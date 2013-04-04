@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+# Visual studio generated files
+/Debug/
+/GeneratedFiles/
+*.opensdf
+*.sdf
+*.user

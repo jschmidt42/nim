@@ -53,6 +53,15 @@
     <ClCompile Include="GeneratedFiles\qrc_nim.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="nodeinstancewidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_nodeinstancewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_nodeinstancewidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -71,6 +80,9 @@
     </CustomBuild>
     <CustomBuild Include="nim.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="nodeinstancewidget.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

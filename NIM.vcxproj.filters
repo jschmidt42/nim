@@ -71,6 +71,12 @@
     <ClCompile Include="instancesettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_nodeinstance.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_nodeinstance.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -78,9 +84,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_nim.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nodeinstance.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="instancemanager.h">
       <Filter>Header Files</Filter>
@@ -100,6 +103,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="instancesettings.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="nodeinstance.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

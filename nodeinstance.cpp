@@ -25,6 +25,7 @@ NodeInstance::~NodeInstance()
 void NodeInstance::SetScriptPath(const QString& path)
 {
 	mScriptPath = path;
+	emit ScriptPathChanged(path);
 }
 
 QString NodeInstance::GetScriptPath() const

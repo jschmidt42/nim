@@ -27,11 +27,13 @@ protected:
 protected Q_SLOTS:
 
 	void OnScriptPathEdited();
+	void OnBrowseScript();
+	void OnValidateScriptPath(const QString& path);
 
 private: // Controls
 	
 	QLineEdit*   mScriptPathEdit;
-	QPushButton* mScriptBrowse;
+	QPushButton* mScriptBrowseButton;
 	QLineEdit*   mPortEdit;
 	QPushButton* mStateButton;
 	QPushButton* mConfigButton;

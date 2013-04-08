@@ -8,7 +8,6 @@
 #include "stdafx.h"
 #include "nim.h"
 #include "nodeinstancewidget.h"
-#include "instancesettings.h"
 
 #include <QSettings>
 
@@ -16,16 +15,15 @@
 NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	: QDialog(parent, flags)
 	, mInstanceLayout(nullptr)
-	, mInstanceSlotCount(0)
 {
 	CreateUI();
 	PopulateUI();
+	SetConnections();
 }
 
 ///////////////////////////////////////////////////////////////////////
 NIM::~NIM()
 {
-	SaveInstances();
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -46,34 +44,37 @@ void NIM::CreateUI()
 ///////////////////////////////////////////////////////////////////////
 void NIM::PopulateUI()
 {
-	QSettings settings;
-
-	int instanceIdx = 0;
-
-	// Load instance settings from registry
-	while (true)
+	// Create node instance widgets and populate the UI
+	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
 	{
-		QString instanceKey = QString("instances%1").arg(instanceIdx);
-		QVariant instance = settings.value( instanceKey );
-		if ( instance.isNull() )
-			break;
-
-		if ( !instance.canConvert<InstanceSettings>() )
-			break;
-
-		// Create node instance widget
-
-		instanceIdx++;
+		NodeInstance* newInstance = mInstanceManager.GetInstance(i);
+		mInstanceLayout->insertWidget( i, new NodeInstanceWidget( newInstance ) );
 	}
 
-	mInstanceSlotCount = instanceIdx;
-
-	// Add at least one more node instance slot
-	mInstanceLayout->insertWidget( mInstanceSlotCount++, new NodeInstanceWidget() );
+	// Add at least one more node instance slot for data entry
+	NodeInstance* newInstance = mInstanceManager.CreateInstance();
+	mInstanceLayout->insertWidget( mInstanceManager.GetInstanceCount()-1, new NodeInstanceWidget( newInstance ) );
 }
 
-///////////////////////////////////////////////////////////////////////
-void NIM::SaveInstances()
+void NIM::SetConnections()
 {
+	connect( this, SIGNAL(finished(int)), this, SLOT(OnExit(int)) );
+	connect( mUI.ExitButton, SIGNAL(clicked()), this, SLOT(close()) );
+}
 
+void NIM::OnExit(int code)
+{
+}
+
+void NIM::closeEvent(QCloseEvent* event)
+{
+	// TODO: Check if any node are running, if yes, pop an warning
+	if(true)
+	{
+		event->accept();
+	}
+	else
+	{
+		event->ignore();
+	}
 }

@@ -9,12 +9,12 @@
 
 #include <QMetaType>
 
-class InstanceSettings
+struct InstanceSettings
 {
+	QString scriptPath;
 
-public:
-	InstanceSettings();
-	~InstanceSettings();
+	friend QDataStream& operator<<(QDataStream &out, const InstanceSettings &obj);
+	friend QDataStream& operator>>(QDataStream &in, InstanceSettings &obj);
 };
 
 Q_DECLARE_METATYPE(InstanceSettings);

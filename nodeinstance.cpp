@@ -7,13 +7,35 @@
 
 #include "StdAfx.h"
 #include "nodeinstance.h"
+#include "instancesettings.h"
 
-
-NodeInstance::NodeInstance(void)
+NodeInstance::NodeInstance()
 {
 }
 
-
-NodeInstance::~NodeInstance(void)
+NodeInstance::NodeInstance(const InstanceSettings& settings)
+	: mScriptPath(settings.scriptPath)
 {
+}
+
+NodeInstance::~NodeInstance()
+{
+}
+
+void NodeInstance::SetScriptPath(const QString& path)
+{
+	mScriptPath = path;
+}
+
+QString NodeInstance::GetScriptPath() const
+{
+	return mScriptPath;
+}
+
+bool NodeInstance::IsValid() const
+{
+	if ( mScriptPath.isEmpty() )
+		return false;
+
+	return true;
 }

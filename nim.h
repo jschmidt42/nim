@@ -5,11 +5,12 @@
 /// @brief Main window
 ///
 
-#ifndef NIM_H
-#define NIM_H
+#pragma once
+
+#include "ui_nim.h"
+#include "instancemanager.h"
 
 #include <QtGui/QDialog>
-#include "ui_nim.h"
 
 class NIM : public QDialog
 {
@@ -19,18 +20,27 @@ public:
 	NIM(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~NIM();
 
+protected Q_SLOTS:
+
+	void OnExit(int code);
+
+protected:
+
+	virtual void closeEvent(QCloseEvent* event);
+
 private: // Implementation
 
 	void CreateUI();
 	void PopulateUI();
-	void SaveInstances();
+	void SetConnections();
 
-private:
+private: // Controls
 
-	Ui::NIMClass mUI;
-	QVBoxLayout* mInstanceLayout;
+	Ui::NIMClass        mUI;
+	QVBoxLayout*        mInstanceLayout;
 
-	int          mInstanceSlotCount;
+private: // Data
+
+	NodeInstanceManager mInstanceManager;
+
 };
-
-#endif // NIM_H

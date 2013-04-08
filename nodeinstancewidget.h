@@ -5,10 +5,9 @@
 /// @brief Single node instance widget
 ///
 
-#ifndef NODEINSTANCEWIDGET_H
-#define NODEINSTANCEWIDGET_H
-
 #pragma once
+
+#include "nodeinstance.h"
 
 #include <QWidget>
 
@@ -17,14 +16,19 @@ class NodeInstanceWidget : public QWidget
 	Q_OBJECT;
 
 public:
-	NodeInstanceWidget(QWidget *parent = 0);
+	
+	NodeInstanceWidget(NodeInstance* instance, QWidget *parent = 0);
 	~NodeInstanceWidget();
 
 protected:
 
 	virtual void resizeEvent(QResizeEvent* event) override;
 
-private:
+protected Q_SLOTS:
+
+	void OnScriptPathEdited();
+
+private: // Controls
 	
 	QLineEdit*   mScriptPathEdit;
 	QPushButton* mScriptBrowse;
@@ -32,6 +36,8 @@ private:
 	QPushButton* mStateButton;
 	QPushButton* mConfigButton;
 
-};
+private: // Data
 
-#endif // NODEINSTANCEWIDGET_H
+	NodeInstance* mInstance;
+
+};

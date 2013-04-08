@@ -7,10 +7,22 @@
 
 #pragma once
 
+class InstanceSettings;
+
 class NodeInstance
 {
 public:
-	NodeInstance(void);
-	~NodeInstance(void);
+	NodeInstance();
+	explicit NodeInstance(const InstanceSettings& settings);
+	~NodeInstance();
+
+	QString GetScriptPath() const;
+	void SetScriptPath(const QString& path);
+	
+	bool IsValid() const;
+
+private:
+
+	QString mScriptPath;
 };
 

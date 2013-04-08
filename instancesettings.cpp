@@ -8,12 +8,16 @@
 #include "StdAfx.h"
 #include "instancesettings.h"
 
-///////////////////////////////////////////////////////////////////////
-InstanceSettings::InstanceSettings()
+#include <QDataStream>
+
+QDataStream &operator<<(QDataStream &out, const InstanceSettings &obj)
 {
+	out << obj.scriptPath;
+	return out;
 }
 
-///////////////////////////////////////////////////////////////////////
-InstanceSettings::~InstanceSettings()
+QDataStream &operator>>(QDataStream &in, InstanceSettings &obj)
 {
+	in >> obj.scriptPath;
+	return in;
 }

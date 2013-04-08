@@ -1,7 +1,9 @@
 <RCC>
-    <qresource prefix="/NIM">
-        <file>Resources/main-icon.png</file>
-        <file>Resources/configuration-icon.png</file>
-        <file>Resources/shutdown-icon.png</file>
-    </qresource>
+	<qresource prefix="/NIM">
+		<file>Resources/main-icon.png</file>
+		<file>Resources/configuration-icon.png</file>
+		<file>Resources/shutdown-icon.png</file>
+		<file>Resources/add-node.png</file>
+		<file>Resources/delete-node.png</file>
+	</qresource>
 </RCC>

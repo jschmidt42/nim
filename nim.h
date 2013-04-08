@@ -21,8 +21,8 @@ public:
 	~NIM();
 
 protected Q_SLOTS:
-
-	void OnExit(int code);
+	
+	void OnAddInstance();
 
 protected:
 
@@ -33,11 +33,13 @@ private: // Implementation
 	void CreateUI();
 	void PopulateUI();
 	void SetConnections();
+	void AddInstance();
 
 private: // Controls
 
 	Ui::NIMClass        mUI;
 	QVBoxLayout*        mInstanceLayout;
+	QPushButton*        mAddInstanceButton;
 
 private: // Data
 

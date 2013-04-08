@@ -35,7 +35,8 @@ void NIM::CreateUI()
 	mInstanceLayout->setSpacing(2);
 	mInstanceLayout->setMargin(0);
 
-	mInstanceLayout->addWidget( new QPushButton("Add"), 0, Qt::AlignRight );
+	mAddInstanceButton = new QPushButton( QIcon(":/NIM/Resources/add-node.png"), "Add");
+	mInstanceLayout->addWidget( mAddInstanceButton, 0, Qt::AlignRight );
 	mInstanceLayout->addStretch(1);
 
 	mUI.Instances->setLayout( mInstanceLayout );
@@ -52,18 +53,13 @@ void NIM::PopulateUI()
 	}
 
 	// Add at least one more node instance slot for data entry
-	NodeInstance* newInstance = mInstanceManager.CreateInstance();
-	mInstanceLayout->insertWidget( mInstanceManager.GetInstanceCount()-1, new NodeInstanceWidget( newInstance ) );
+	AddInstance();
 }
 
 void NIM::SetConnections()
 {
-	connect( this, SIGNAL(finished(int)), this, SLOT(OnExit(int)) );
 	connect( mUI.ExitButton, SIGNAL(clicked()), this, SLOT(close()) );
-}
-
-void NIM::OnExit(int code)
-{
+	connect( mAddInstanceButton, SIGNAL(clicked()), this, SLOT(OnAddInstance()) );
 }
 
 void NIM::closeEvent(QCloseEvent* event)
@@ -77,4 +73,15 @@ void NIM::closeEvent(QCloseEvent* event)
 	{
 		event->ignore();
 	}
+}
+
+void NIM::OnAddInstance()
+{
+	AddInstance();
+}
+
+void NIM::AddInstance()
+{
+	NodeInstance* newInstance = mInstanceManager.CreateInstance();
+	mInstanceLayout->insertWidget( mInstanceManager.GetInstanceCount()-1, new NodeInstanceWidget( newInstance ) );
 }

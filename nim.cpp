@@ -58,8 +58,15 @@ void NIM::PopulateUI()
 
 void NIM::SetConnections()
 {
+	// Add some global actions
+	QAction* insertNodeAction = new QAction( tr("add new node"), this );
+	insertNodeAction->setShortcut( QKeySequence(Qt::Key_Insert) );
+	addAction( insertNodeAction );
+
+	// Do UI connections
 	connect( mUI.ExitButton, SIGNAL(clicked()), this, SLOT(close()) );
 	connect( mAddInstanceButton, SIGNAL(clicked()), this, SLOT(OnAddInstance()) );
+	connect( insertNodeAction, SIGNAL(triggered()), this, SLOT(OnAddInstance()) );
 }
 
 void NIM::closeEvent(QCloseEvent* event)

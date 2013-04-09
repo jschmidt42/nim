@@ -33,11 +33,17 @@ public: // Interface
 
 	void Start();
 	void Stop();
+	bool IsRunning() const;
+
+protected Q_SLOTS:
+
+	void OnProcessStateChanged(QProcess::ProcessState state);
 
 Q_SIGNALS:
 
 	void ScriptPathChanged(const QString& path);
 	void PortChanged(int port);
+	void NodeStateChanged(bool);
 
 private:
 

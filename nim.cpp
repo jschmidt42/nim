@@ -19,11 +19,15 @@ NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	CreateUI();
 	PopulateUI();
 	SetConnections();
+
+	resize( QSettings().value( "width", 250 ).toInt(), QSettings().value( "height", 300 ).toInt() );
 }
 
 ///////////////////////////////////////////////////////////////////////
 NIM::~NIM()
 {
+	QSettings().setValue( "width", width() );
+	QSettings().setValue( "height", height() );
 }
 
 ///////////////////////////////////////////////////////////////////////

@@ -11,10 +11,11 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QToolButton>
 
 NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *parent)
 	: QWidget(parent)
-	, mInstance(nodeInstance)
+	, mNodeInstance(nodeInstance)
 {
 	Q_ASSERT( nodeInstance );
 
@@ -37,30 +38,41 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	//
 	// Port
 	//
-	QValidator* portValidator = new QIntValidator(0, 66000, this);
+	QValidator* portValidator = new QIntValidator(0, 65535, this);
 	mPortEdit = new QLineEdit();
 	mPortEdit->setFixedWidth( 45 );
 	mPortEdit->setValidator( portValidator );
 	mPortEdit->setText( nodeInstance->GetPort() == 0 ? "" : QString("%1").arg(nodeInstance->GetPort()) );
+	mPortEdit->setPlaceholderText( "port" );
 
 	//
 	// Running state
 	//
-	mStateButton = new QPushButton(">");
+	mStateButton = new QPushButton( QIcon(":/NIM/Resources/start-node.png"), "" );
+	mStateButton->setFlat(true);
 	mStateButton->setFixedWidth( 20 );
 
 	//
 	// Configuration dropdown
 	//
-	mConfigButton = new QPushButton("C");
+	mConfigButton = new QToolButton();
 	mConfigButton->setFixedWidth( 20 );
+	mConfigButton->setAutoRaise( true );
+	mConfigButton->setPopupMode( QToolButton::InstantPopup );
+	mConfigButton->setToolButtonStyle( Qt::ToolButtonIconOnly );
+	//mConfigButton->setIcon( QIcon(":/Kine/Res/layers-icon.png") );
+
+	mConfigButton->addAction( new QAction("Open Browser", mConfigButton) );
+	mConfigButton->addAction( new QAction("Edit Env. Vars.", mConfigButton) );
+	mConfigButton->addAction( new QAction("Delete", mConfigButton) );
 	
 	//
 	// Layout
 	//
+	mainLayout->addWidget( mStateButton );
 	mainLayout->addWidget( mScriptPathEdit );
 	mainLayout->addWidget( mPortEdit );
-	mainLayout->addWidget( mStateButton );
+	
 	mainLayout->addWidget( mConfigButton );
 
 	// Create connections
@@ -68,7 +80,10 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	connect( mScriptPathEdit, SIGNAL(textChanged(const QString&)), this, SLOT(OnValidateScriptPath(const QString&)) );
 	connect( mPortEdit, SIGNAL(editingFinished()), this, SLOT(OnPortEdited()) );
 	connect( mScriptBrowseButton, SIGNAL(clicked()), this, SLOT(OnBrowseScript()) );
-	connect( mInstance, SIGNAL(ScriptPathChanged(const QString&)), mScriptPathEdit, SLOT(setText(const QString&)) );
+	connect( mStateButton, SIGNAL(clicked()), this, SLOT(OnNodeStateToggled()) );
+
+	connect( mNodeInstance, SIGNAL(ScriptPathChanged(const QString&)), mScriptPathEdit, SLOT(setText(const QString&)) );
+	connect( mNodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnNodeStateChanged(bool)) );
 
 	setLayout( mainLayout );
 }
@@ -89,7 +104,7 @@ void NodeInstanceWidget::resizeEvent(QResizeEvent* event)
 
 void NodeInstanceWidget::OnScriptPathEdited()
 {
-	mInstance->SetScriptPath( mScriptPathEdit->text() );
+	mNodeInstance->SetScriptPath( mScriptPathEdit->text() );
 }
 
 void NodeInstanceWidget::OnBrowseScript()
@@ -103,7 +118,7 @@ void NodeInstanceWidget::OnBrowseScript()
 		if ( files.count() == 1 )
 		{
 			const QString scriptFile = files[0];
-			mInstance->SetScriptPath( scriptFile );
+			mNodeInstance->SetScriptPath( scriptFile );
 		}
 	}
 }
@@ -123,7 +138,7 @@ void NodeInstanceWidget::OnValidateScriptPath(const QString& path)
 void NodeInstanceWidget::OnPortEdited()
 {
 	int port = mPortEdit->text().toInt();
-	mInstance->SetPort( port );
+	mNodeInstance->SetPort( port );
 
 	emit PortEdited(port);
 }
@@ -138,4 +153,29 @@ void NodeInstanceWidget::SetPortWarning()
 void NodeInstanceWidget::ClearPortWarning()
 {
 	mPortEdit->setPalette( QPalette() );
+}
+
+void NodeInstanceWidget::OnNodeStateToggled()
+{
+	if ( mNodeInstance->IsRunning() )
+	{
+		mNodeInstance->Stop();
+	}
+	else
+	{
+		mNodeInstance->Start();
+	}
+}
+
+void NodeInstanceWidget::OnNodeStateChanged(bool)
+{
+	// Update UI state
+	if ( mNodeInstance->IsRunning() )
+	{
+		mStateButton->setIcon( QIcon(":/NIM/Resources/stop-node.png") );
+	}
+	else
+	{
+		mStateButton->setIcon( QIcon(":/NIM/Resources/start-node.png") );
+	}
 }

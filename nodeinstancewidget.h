@@ -33,6 +33,8 @@ protected Q_SLOTS:
 	void OnBrowseScript();
 	void OnValidateScriptPath(const QString& path);
 	void OnPortEdited();
+	void OnNodeStateToggled();
+	void OnNodeStateChanged(bool);
 
 Q_SIGNALS:
 
@@ -44,10 +46,10 @@ private: // Controls
 	QPushButton* mScriptBrowseButton;
 	QLineEdit*   mPortEdit;
 	QPushButton* mStateButton;
-	QPushButton* mConfigButton;
+	QToolButton* mConfigButton;
 
 private: // Data
 
-	NodeInstance* mInstance;
+	NodeInstance* mNodeInstance;
 
 };

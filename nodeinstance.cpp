@@ -19,10 +19,12 @@ NodeInstance::NodeInstance(const InstanceSettings& settings)
 	: mScriptPath(settings.scriptPath)
 	, mPort(settings.port)
 {
+	connect( &mProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(OnProcessStateChanged(QProcess::ProcessState)) );
 }
 
 NodeInstance::~NodeInstance()
 {
+	Stop();
 }
 
 void NodeInstance::SetScriptPath(const QString& path)
@@ -57,10 +59,44 @@ void NodeInstance::SetPort(int port)
 
 void NodeInstance::Start()
 {
+	// TODO: read from config the node.exe path
 
+	if ( !IsValid() )
+		return;
+
+	if ( IsRunning() )
+	{
+		Q_ASSERT( false );
+		Stop();
+	}
+
+	// Get the directory of the script
+	QFileInfo scriptFileInfo( mScriptPath );
+
+	QStringList  arguments;
+	arguments << scriptFileInfo.fileName();
+	mProcess.setWorkingDirectory( scriptFileInfo.absolutePath() );
+	
+	// Set env. vars.
+	QStringList env = QProcess::systemEnvironment();
+	env << QString("PORT=%1").arg(mPort);
+	mProcess.setEnvironment(env);
+
+	// Start the process
+	mProcess.start("node.exe", arguments);
 }
 
 void NodeInstance::Stop()
 {
+	mProcess.kill();
+}
 
+bool NodeInstance::IsRunning() const
+{
+	return mProcess.state() == QProcess::Running;
+}
+
+void NodeInstance::OnProcessStateChanged(QProcess::ProcessState state)
+{
+	emit NodeStateChanged( IsRunning() );
 }

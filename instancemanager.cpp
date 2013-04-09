@@ -18,6 +18,12 @@ NodeInstanceManager::NodeInstanceManager()
 NodeInstanceManager::~NodeInstanceManager()
 {
 	Save( QSettings() );
+
+	// Cleanup node memory
+	for (int i = 0; i < mInstances.count(); ++i)
+	{
+		delete mInstances[i];
+	}
 }
 
 int NodeInstanceManager::GetInstanceCount() const

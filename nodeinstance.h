@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <QProcess>
+
 class InstanceSettings;
 
 class NodeInstance : public QObject
@@ -21,16 +23,27 @@ public:
 
 public: // Interface
 
+	bool IsValid() const;
+
 	QString GetScriptPath() const;
 	void SetScriptPath(const QString& path);
-	bool IsValid() const;
+
+	int GetPort() const;
+	void SetPort(int port);
+
+	void Start();
+	void Stop();
 
 Q_SIGNALS:
 
 	void ScriptPathChanged(const QString& path);
+	void PortChanged(int port);
 
 private:
 
-	QString mScriptPath;
+	QString  mScriptPath;
+	int      mPort;
+
+	QProcess mProcess;
 };
 

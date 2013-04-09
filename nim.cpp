@@ -48,12 +48,14 @@ void NIM::PopulateUI()
 	// Create node instance widgets and populate the UI
 	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
 	{
-		NodeInstance* newInstance = mInstanceManager.GetInstance(i);
-		mInstanceLayout->insertWidget( i, new NodeInstanceWidget( newInstance ) );
+		NodeInstance* nodeInstance = mInstanceManager.GetInstance(i);
+		InsertNodeInstanceWidget( i, nodeInstance );
 	}
 
 	// Add at least one more node instance slot for data entry
-	AddInstance();
+	AddNewNodeInstanceWidget();
+
+	ValidatePorts();
 }
 
 void NIM::SetConnections()
@@ -84,11 +86,59 @@ void NIM::closeEvent(QCloseEvent* event)
 
 void NIM::OnAddInstance()
 {
-	AddInstance();
+	AddNewNodeInstanceWidget();
 }
 
-void NIM::AddInstance()
+void NIM::AddNewNodeInstanceWidget()
 {
 	NodeInstance* newInstance = mInstanceManager.CreateInstance();
-	mInstanceLayout->insertWidget( mInstanceManager.GetInstanceCount()-1, new NodeInstanceWidget( newInstance ) );
+	InsertNodeInstanceWidget( mInstanceManager.GetInstanceCount()-1, newInstance );
+}
+
+
+void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
+{
+	NodeInstanceWidget* nodeInstanceWidget = new NodeInstanceWidget( nodeInstance );
+	mInstanceLayout->insertWidget( idx, nodeInstanceWidget );
+	connect( nodeInstanceWidget, SIGNAL(PortEdited(int)), this, SLOT(OnValidatePorts()) );
+}
+
+
+void NIM::OnValidatePorts()
+{
+	ValidatePorts();
+
+}
+
+void NIM::ValidatePorts()
+{
+	// Clear all warning first
+	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
+	{
+		NodeInstanceWidget* nodeInstWidget = qobject_cast<NodeInstanceWidget*>( mInstanceLayout->itemAt(i)->widget() );
+		nodeInstWidget->ClearPortWarning();
+	}
+
+	// Validate all node instance port with each other
+	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
+	{
+		NodeInstance* nodeInstance = mInstanceManager.GetInstance(i);
+
+		for (int j = i; j < mInstanceManager.GetInstanceCount(); ++j)
+		{
+			if ( i != j )
+			{
+				NodeInstance* otherNodeInstance = mInstanceManager.GetInstance(j);
+
+				if ( nodeInstance->GetPort() == otherNodeInstance->GetPort() )
+				{
+					NodeInstanceWidget* w1 = qobject_cast<NodeInstanceWidget*>( mInstanceLayout->itemAt(i)->widget() );
+					NodeInstanceWidget* w2 = qobject_cast<NodeInstanceWidget*>( mInstanceLayout->itemAt(j)->widget() );
+
+					w1->SetPortWarning();
+					w2->SetPortWarning();
+				}
+			}
+		}
+	}
 }

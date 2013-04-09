@@ -20,6 +20,9 @@ public:
 	NodeInstanceWidget(NodeInstance* instance, QWidget *parent = 0);
 	~NodeInstanceWidget();
 
+	void SetPortWarning();
+	void ClearPortWarning();
+
 protected:
 
 	virtual void resizeEvent(QResizeEvent* event) override;
@@ -29,6 +32,11 @@ protected Q_SLOTS:
 	void OnScriptPathEdited();
 	void OnBrowseScript();
 	void OnValidateScriptPath(const QString& path);
+	void OnPortEdited();
+
+Q_SIGNALS:
+
+	void PortEdited(int);
 
 private: // Controls
 	

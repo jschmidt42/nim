@@ -12,6 +12,7 @@
 struct InstanceSettings
 {
 	QString scriptPath;
+	int     port;
 
 	friend QDataStream& operator<<(QDataStream &out, const InstanceSettings &obj);
 	friend QDataStream& operator>>(QDataStream &in, InstanceSettings &obj);

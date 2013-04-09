@@ -10,11 +10,14 @@
 #include "instancesettings.h"
 
 NodeInstance::NodeInstance()
+	: mScriptPath()
+	, mPort(0)
 {
 }
 
 NodeInstance::NodeInstance(const InstanceSettings& settings)
 	: mScriptPath(settings.scriptPath)
+	, mPort(settings.port)
 {
 }
 
@@ -39,4 +42,25 @@ bool NodeInstance::IsValid() const
 		return false;
 
 	return true;
+}
+
+int NodeInstance::GetPort() const
+{
+	return mPort;
+}
+
+void NodeInstance::SetPort(int port)
+{
+	mPort = port;
+	emit PortChanged(port);
+}
+
+void NodeInstance::Start()
+{
+
+}
+
+void NodeInstance::Stop()
+{
+
 }

@@ -23,6 +23,7 @@ public:
 protected Q_SLOTS:
 	
 	void OnAddInstance();
+	void OnValidatePorts();
 
 protected:
 
@@ -33,7 +34,9 @@ private: // Implementation
 	void CreateUI();
 	void PopulateUI();
 	void SetConnections();
-	void AddInstance();
+	void AddNewNodeInstanceWidget();
+	void InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance);
+	void ValidatePorts();
 
 private: // Controls
 

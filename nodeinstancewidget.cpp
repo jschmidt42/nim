@@ -12,11 +12,11 @@
 #include <QLineEdit>
 #include <QPushButton>
 
-NodeInstanceWidget::NodeInstanceWidget(NodeInstance* instance, QWidget *parent)
+NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *parent)
 	: QWidget(parent)
-	, mInstance(instance)
+	, mInstance(nodeInstance)
 {
-	Q_ASSERT( instance );
+	Q_ASSERT( nodeInstance );
 
 	QHBoxLayout* mainLayout = new QHBoxLayout();
 	mainLayout->setSpacing( 2 );
@@ -25,7 +25,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* instance, QWidget *parent)
 	//
 	// Script path
 	//
-	mScriptPathEdit = new QLineEdit( instance->GetScriptPath() );
+	mScriptPathEdit = new QLineEdit( nodeInstance->GetScriptPath() );
 	mScriptPathEdit->setPlaceholderText( "enter script path..." );
 	mScriptPathEdit->setTextMargins(0, 0, 20, 0);
 
@@ -37,8 +37,11 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* instance, QWidget *parent)
 	//
 	// Port
 	//
+	QValidator* portValidator = new QIntValidator(0, 66000, this);
 	mPortEdit = new QLineEdit();
 	mPortEdit->setFixedWidth( 45 );
+	mPortEdit->setValidator( portValidator );
+	mPortEdit->setText( nodeInstance->GetPort() == 0 ? "" : QString("%1").arg(nodeInstance->GetPort()) );
 
 	//
 	// Running state
@@ -63,6 +66,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* instance, QWidget *parent)
 	// Create connections
 	connect( mScriptPathEdit, SIGNAL(editingFinished()), this, SLOT(OnScriptPathEdited()) );
 	connect( mScriptPathEdit, SIGNAL(textChanged(const QString&)), this, SLOT(OnValidateScriptPath(const QString&)) );
+	connect( mPortEdit, SIGNAL(editingFinished()), this, SLOT(OnPortEdited()) );
 	connect( mScriptBrowseButton, SIGNAL(clicked()), this, SLOT(OnBrowseScript()) );
 	connect( mInstance, SIGNAL(ScriptPathChanged(const QString&)), mScriptPathEdit, SLOT(setText(const QString&)) );
 
@@ -108,14 +112,30 @@ void NodeInstanceWidget::OnValidateScriptPath(const QString& path)
 {
 	QFileInfo fi( path );
 
-	QPalette bgPal = mScriptPathEdit->palette();
-	if ( fi.exists() )
-	{
-		bgPal.setColor( mScriptPathEdit->backgroundRole(), QPalette().color(QPalette::Background) );
-	}
-	else
+	QPalette bgPal;
+	if ( !fi.exists() )
 	{
 		bgPal.setColor( mScriptPathEdit->backgroundRole(), QColor(0xFF, 0x5A, 0x5A) );
 	}
 	mScriptPathEdit->setPalette( bgPal );
+}
+
+void NodeInstanceWidget::OnPortEdited()
+{
+	int port = mPortEdit->text().toInt();
+	mInstance->SetPort( port );
+
+	emit PortEdited(port);
+}
+
+void NodeInstanceWidget::SetPortWarning()
+{
+	QPalette bgPal = mPortEdit->palette();
+	bgPal.setColor( mPortEdit->backgroundRole(), QColor(244, 247, 153) );
+	mPortEdit->setPalette( bgPal );
+}
+
+void NodeInstanceWidget::ClearPortWarning()
+{
+	mPortEdit->setPalette( QPalette() );
 }

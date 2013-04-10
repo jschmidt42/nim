@@ -12,6 +12,7 @@
 NodeInstance::NodeInstance()
 	: mScriptPath()
 	, mPort(0)
+	, mProcess( this )
 {
 }
 
@@ -24,6 +25,7 @@ NodeInstance::NodeInstance(const InstanceSettings& settings)
 
 NodeInstance::~NodeInstance()
 {
+	mProcess.disconnect( this );
 	Stop();
 }
 
@@ -93,7 +95,7 @@ void NodeInstance::Stop()
 
 bool NodeInstance::IsRunning() const
 {
-	return mProcess.state() == QProcess::Running;
+	return mProcess.state() != QProcess::NotRunning;
 }
 
 void NodeInstance::OnProcessStateChanged(QProcess::ProcessState state)

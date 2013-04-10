@@ -11,6 +11,7 @@
 #include "instancemanager.h"
 
 #include <QtGui/QDialog>
+#include <QSystemTrayIcon>
 
 class NIM : public QDialog
 {
@@ -24,6 +25,8 @@ protected Q_SLOTS:
 	
 	void OnAddInstance();
 	void OnValidatePorts();
+	void OnTrayActivated(QSystemTrayIcon::ActivationReason reason);
+	void OnCountActiveNodes();
 
 protected:
 
@@ -37,10 +40,12 @@ private: // Implementation
 	void AddNewNodeInstanceWidget();
 	void InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance);
 	void ValidatePorts();
+	void CreateTrayIcon();
 
 private: // Controls
 
 	Ui::NIMClass        mUI;
+	QSystemTrayIcon     mTrayIcon;
 	QVBoxLayout*        mInstanceLayout;
 	QPushButton*        mAddInstanceButton;
 

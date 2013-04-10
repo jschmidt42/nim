@@ -14,8 +14,10 @@
 ///////////////////////////////////////////////////////////////////////
 NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	: QDialog(parent, flags)
+	, mTrayIcon( QIcon(":/NIM/Resources/main-icon.png"), this )
 	, mInstanceLayout(nullptr)
 {
+	CreateTrayIcon();
 	CreateUI();
 	PopulateUI();
 	SetConnections();
@@ -70,22 +72,16 @@ void NIM::SetConnections()
 	addAction( insertNodeAction );
 
 	// Do UI connections
-	connect( mUI.ExitButton, SIGNAL(clicked()), this, SLOT(close()) );
+	connect( mUI.ExitButton, SIGNAL(clicked()), this, SLOT(accept()) );
 	connect( mAddInstanceButton, SIGNAL(clicked()), this, SLOT(OnAddInstance()) );
 	connect( insertNodeAction, SIGNAL(triggered()), this, SLOT(OnAddInstance()) );
+	connect( &mTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(OnTrayActivated(QSystemTrayIcon::ActivationReason)) );
 }
 
 void NIM::closeEvent(QCloseEvent* event)
 {
-	// TODO: Check if any node are running, if yes, pop an warning
-	if(true)
-	{
-		event->accept();
-	}
-	else
-	{
-		event->ignore();
-	}
+	hide();
+	event->ignore();
 }
 
 void NIM::OnAddInstance()
@@ -105,6 +101,8 @@ void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
 	NodeInstanceWidget* nodeInstanceWidget = new NodeInstanceWidget( nodeInstance );
 	mInstanceLayout->insertWidget( idx, nodeInstanceWidget );
 	connect( nodeInstanceWidget, SIGNAL(PortEdited(int)), this, SLOT(OnValidatePorts()) );
+	
+	connect( nodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnCountActiveNodes()) );
 }
 
 
@@ -145,4 +143,39 @@ void NIM::ValidatePorts()
 			}
 		}
 	}
+}
+
+void NIM::CreateTrayIcon()
+{
+	mTrayIcon.show();
+}
+
+void NIM::OnTrayActivated(QSystemTrayIcon::ActivationReason reason)
+{
+	if ( reason == QSystemTrayIcon::Trigger )
+		show();
+}
+
+void NIM::OnCountActiveNodes()
+{
+#if 0
+	int runningNodes = 0;
+	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
+	{
+		NodeInstance* nodeInstance = mInstanceManager.GetInstance(i);
+		if ( nodeInstance->IsRunning() )
+			runningNodes++;
+	}
+
+	QPixmap trayIconPixmap( ":/NIM/Resources/main-icon.png" );
+	QPainter trayIconPainter( &trayIconPixmap );
+	QFont ft = trayIconPainter.font();
+	ft.setPointSize( 16 );
+	ft.setBold(true);
+	trayIconPainter.setPen( Qt::white );
+	trayIconPainter.setFont( ft );
+	trayIconPainter.drawText( trayIconPixmap.rect(), Qt::AlignBottom | Qt::AlignRight, QString("%1").arg(runningNodes) );
+	trayIconPainter.end();
+	mTrayIcon.setIcon( QIcon(trayIconPixmap) );
+#endif
 }

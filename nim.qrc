@@ -7,5 +7,6 @@
 		<file>Resources/delete-node.png</file>
 		<file>Resources/start-node.png</file>
 		<file>Resources/stop-node.png</file>
+		<file>Resources/more-options.png</file>
 	</qresource>
 </RCC>

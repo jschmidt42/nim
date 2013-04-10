@@ -56,14 +56,15 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	// Configuration dropdown
 	//
 	mConfigButton = new QToolButton();
+	mConfigButton->setIcon( QIcon(":/NIM/Resources/more-options.png") );
 	mConfigButton->setFixedWidth( 20 );
 	mConfigButton->setAutoRaise( true );
 	mConfigButton->setPopupMode( QToolButton::InstantPopup );
 	mConfigButton->setToolButtonStyle( Qt::ToolButtonIconOnly );
-	//mConfigButton->setIcon( QIcon(":/Kine/Res/layers-icon.png") );
 
 	mConfigButton->addAction( new QAction("Open Browser", mConfigButton) );
 	mConfigButton->addAction( new QAction("Edit Env. Vars.", mConfigButton) );
+	mConfigButton->addAction( new QAction("Debug", mConfigButton) );
 	mConfigButton->addAction( new QAction("Delete", mConfigButton) );
 	
 	//

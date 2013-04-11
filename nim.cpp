@@ -13,7 +13,7 @@
 
 ///////////////////////////////////////////////////////////////////////
 NIM::NIM(QWidget *parent, Qt::WFlags flags)
-	: QDialog(parent, flags)
+	: QDialog(parent, flags | Qt::WindowMinimizeButtonHint)
 	, mTrayIcon( QIcon(":/NIM/Resources/main-icon.png"), this )
 	, mInstanceLayout(nullptr)
 {

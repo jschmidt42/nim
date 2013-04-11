@@ -9,7 +9,7 @@
 
 #include "NodeInstanceManager.h"
 
-#include "ui_nim.h"
+#include "ui_NIM.h"
 
 #include <QtGui/QDialog>
 #include <QSystemTrayIcon>

@@ -102,17 +102,14 @@
     <ClInclude Include="Src\NodeInstanceSettings.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Build.Output\GeneratedFiles\ui_nim.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Precompiled.h">
       <Filter>PCH Files</Filter>
     </ClInclude>
+    <ClInclude Include="Build.Output\GeneratedFiles\ui_NIM.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="nim.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="nim.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
@@ -130,6 +127,9 @@
     </CustomBuild>
     <CustomBuild Include="Src\NodeInstanceWidget.h">
       <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="UI\NIM.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

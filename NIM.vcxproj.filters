@@ -61,9 +61,6 @@
     <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NoticeMessageBox.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\qrc_nim.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Precompiled.cpp">
       <Filter>PCH Files</Filter>
     </ClCompile>
@@ -94,6 +91,9 @@
     <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NodeInstanceWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\qrc_nim.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\NodeInstanceManager.h">
@@ -113,9 +113,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="nim.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="Src\NoticeMessageBox.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
@@ -133,6 +130,9 @@
     </CustomBuild>
     <CustomBuild Include="UI\NIM.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="nim.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +166,18 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\NIM.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\theme.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\checkbox.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\down_arrow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\handle.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -108,6 +108,9 @@
     <ClInclude Include="Build.Output\GeneratedFiles\ui_NIM.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="nim.qrc">
@@ -162,5 +165,6 @@
     <None Include="Resources\more-options.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\NIM.ico" />
   </ItemGroup>
 </Project>

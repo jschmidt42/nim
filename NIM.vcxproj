@@ -243,6 +243,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\Build.Output\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fStdAfx.h" "-f../../../Src/NodeInstanceWidget.h"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\Build.Output\GeneratedFiles\$(ConfigurationName)\." "-I.\Build.Output\GeneratedFiles"</Command>
     </CustomBuild>
     <ClInclude Include="Build.Output\GeneratedFiles\ui_NIM.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Src\Precompiled.h" />
     <CustomBuild Include="Src\NoticeMessageBox.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
@@ -305,7 +306,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="NIM.rc" />
+    <ResourceCompile Include="NIM.rc">
+      <Culture Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">0x0c0c</Culture>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add-node.png">
@@ -338,6 +341,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
+    <None Include="Resources\NIM.ico" />
     <None Include="Resources\shutdown-icon.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

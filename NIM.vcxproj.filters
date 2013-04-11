@@ -29,11 +29,11 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="PCH Files">
+      <UniqueIdentifier>{ef8e8053-1588-4751-b17e-494d308f8e2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="nim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,11 +91,11 @@
     <ClCompile Include="Build.Output\GeneratedFiles\qrc_nim.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Precompiled.cpp">
+      <Filter>PCH Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Src\NodeInstanceManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -104,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="Build.Output\GeneratedFiles\ui_nim.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Precompiled.h">
+      <Filter>PCH Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

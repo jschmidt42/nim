@@ -5,7 +5,8 @@
 /// @brief Main entry point.
 ///
 
-#include "stdafx.h"
+#include "Precompiled.h"
+
 #include "nim.h"
 #include "NodeInstanceSettings.h"
 

@@ -3,4 +3,4 @@
 /// All rights reserved. http://www.equals-forty-two.com
 ///
 
-#include "stdafx.h"
+#include "Precompiled.h"

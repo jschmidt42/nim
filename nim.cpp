@@ -5,8 +5,9 @@
 /// @brief Main window implementation
 ///
 
-#include "stdafx.h"
+#include "Precompiled.h"
 #include "nim.h"
+
 #include "nodeinstancewidget.h"
 #include "NoticeMessageBox.h"
 #include "QTUtils.h"

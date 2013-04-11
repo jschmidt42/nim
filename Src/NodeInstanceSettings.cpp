@@ -5,7 +5,7 @@
 /// @brief Node instance settings
 ///
 
-#include "StdAfx.h"
+#include "Precompiled.h"
 #include "NodeInstanceSettings.h"
 
 #include <QDataStream>

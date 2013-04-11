@@ -5,8 +5,9 @@
 /// @brief Single node instance implementation
 ///
 
-#include "StdAfx.h"
-#include "nodeinstance.h"
+#include "Precompiled.h"
+#include "NodeInstance.h"
+
 #include "NodeInstanceSettings.h"
 
 NodeInstance::NodeInstance()

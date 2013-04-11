@@ -5,8 +5,8 @@
 /// @brief Single node instance configuration widget implementation
 ///
 
-#include "stdafx.h"
-#include "nodeinstancewidget.h"
+#include "Precompiled.h"
+#include "NodeInstanceWidget.h"
 
 #include <QHBoxLayout>
 #include <QLineEdit>

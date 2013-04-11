@@ -17,6 +17,8 @@ namespace QTUtils {
 
 	void SetTimeout(TimeoutCallback callback, int timeout);
 
+	QString ReadStyleSheet(const QString& url);	
+
 	namespace Internal {
 
 		class STimeout : public QObject

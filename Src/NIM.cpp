@@ -20,12 +20,14 @@ NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	, mTrayIcon( QIcon(":/NIM/Resources/main-icon.png"), this )
 	, mInstanceLayout(nullptr)
 {
+	setStyleSheet( QTUtils::ReadStyleSheet(":/NIM/Resources/theme.css") );
+
 	CreateTrayIcon();
 	CreateUI();
 	PopulateUI();
 	SetConnections();
 
-	resize( QSettings().value( "width", 250 ).toInt(), QSettings().value( "height", 300 ).toInt() );
+	resize( QSettings().value( "width", width() ).toInt(), QSettings().value( "height", height() ).toInt() );
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -39,6 +41,8 @@ NIM::~NIM()
 void NIM::CreateUI()
 {
 	mUI.setupUi(this);
+
+	mUI.Title->setText( tr("<html><div style='color:#FFFFFF;font-size:200%'>N</font><font color='#AFD06C'>o</font>de <font color='#77982E'>js</font> Instance Manager</div></html>") );
 
 	mInstanceLayout = new QVBoxLayout();
 	mInstanceLayout->setSpacing(2);

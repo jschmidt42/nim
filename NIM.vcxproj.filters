@@ -165,6 +165,8 @@
     <None Include="Resources\more-options.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\NIM.ico" />
+    <None Include="Resources\NIM.ico">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -22,4 +22,23 @@ namespace QTUtils {
 			delete this;
 		}
 	} // end namespace Internal
+
+	QString ReadStyleSheet( const QString& url )
+	{
+		// Let's use QFile and point to a resource...
+		QFile data(url);
+		QString style;
+		// ...to open the file
+		if(data.open(QFile::ReadOnly)) {
+			QTextStream styleIn(&data);
+			// Read file to a string.
+			style = styleIn.readAll();
+			data.close();
+
+			return style;
+		}
+
+		return "";
+	}
+
 } // end namespace QTUtils

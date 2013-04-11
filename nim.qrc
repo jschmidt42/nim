@@ -1,12 +1,16 @@
 <RCC>
-	<qresource prefix="/NIM">
-		<file>Resources/main-icon.png</file>
-		<file>Resources/configuration-icon.png</file>
-		<file>Resources/shutdown-icon.png</file>
-		<file>Resources/add-node.png</file>
-		<file>Resources/delete-node.png</file>
-		<file>Resources/start-node.png</file>
-		<file>Resources/stop-node.png</file>
-		<file>Resources/more-options.png</file>
-	</qresource>
+    <qresource prefix="/NIM">
+        <file>Resources/main-icon.png</file>
+        <file>Resources/configuration-icon.png</file>
+        <file>Resources/shutdown-icon.png</file>
+        <file>Resources/add-node.png</file>
+        <file>Resources/delete-node.png</file>
+        <file>Resources/start-node.png</file>
+        <file>Resources/stop-node.png</file>
+        <file>Resources/more-options.png</file>
+        <file>Resources/theme.css</file>
+        <file>Resources/checkbox.png</file>
+        <file>Resources/down_arrow.png</file>
+        <file>Resources/handle.png</file>
+    </qresource>
 </RCC>

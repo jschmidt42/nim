@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>268</width>
-    <height>370</height>
+    <width>238</width>
+    <height>268</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,7 +23,7 @@
    <string>NIM</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="nim.qrc">
+   <iconset resource="../nim.qrc">
     <normaloff>:/NIM/Resources/main-icon.png</normaloff>:/NIM/Resources/main-icon.png</iconset>
   </property>
   <property name="whatsThis">
@@ -65,7 +65,7 @@
      <property name="minimumSize">
       <size>
        <width>220</width>
-       <height>300</height>
+       <height>200</height>
       </size>
      </property>
      <property name="frameShape">
@@ -79,8 +79,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>250</width>
-        <height>302</height>
+        <width>220</width>
+        <height>200</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -100,7 +100,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="nim.qrc">
+        <iconset resource="../nim.qrc">
          <normaloff>:/NIM/Resources/configuration-icon.png</normaloff>:/NIM/Resources/configuration-icon.png</iconset>
        </property>
       </widget>
@@ -124,7 +124,7 @@
         <string>Exit</string>
        </property>
        <property name="icon">
-        <iconset resource="nim.qrc">
+        <iconset resource="../nim.qrc">
          <normaloff>:/NIM/Resources/shutdown-icon.png</normaloff>:/NIM/Resources/shutdown-icon.png</iconset>
        </property>
       </widget>
@@ -140,7 +140,7 @@
   <tabstop>ExitButton</tabstop>
  </tabstops>
  <resources>
-  <include location="nim.qrc"/>
+  <include location="../nim.qrc"/>
  </resources>
  <connections/>
 </ui>

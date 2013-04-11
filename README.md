@@ -8,6 +8,30 @@ specify the port of all instances and many other process parameters.
 
 It is useful to have a single view on all your node instances that are running and being able to quickly restart them, etc.
 
+## Usage
+
+![main ui](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/main.png)
+
+- You add a new node instance slot by pressing the **Add** button.
+- Then browse for a **node.js startup script** *(same script you would start using node.exe on the command line)*.
+- If your node application is a server that needs a given port, enter it in the **port field**.
+- Finally press the **Play** button to start the node process. If it didn't crashed at startup, the icon should pass to a stop button state.
+	- Pressing the stop button will kill the node process
+- *Repeat the process for other node instances.*
+
+### Additional options
+
+- More node instance options...
+	- ![more options](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/more-options.png)
+		- **Open Browser**: opens a browser view on http://localhost:port
+		- **Open Explorer**: opens a file explorer view where the startup scripts is
+		- **Edit Env. Vars**: edits environment variables that will be passed to the node process when started.
+		- **Log**: opens a log window of the running node process.
+		- **Debug**: adds the *debug* argument to the node process to be debugged
+		- **Delete**: deletes the node instance slot 
+- When you minimize the application it will be hidden from the application taskbar and a icon will be available in the system tray to re-open it.
+	- ![system tray](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/system-tray.png)
+
 ## Requirements
 
 - Install Visual Studio 2010

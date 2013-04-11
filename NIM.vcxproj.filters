@@ -34,12 +34,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="nodeinstancewidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="nodeinstance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Src\NoticeMessageBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,18 +61,6 @@
     <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NoticeMessageBox.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_nodeinstancewidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_nodeinstancewidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_nodeinstance.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_nodeinstance.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Build.Output\GeneratedFiles\qrc_nim.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -92,6 +74,24 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NIM.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NodeInstance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_NodeInstance.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NodeInstance.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NodeInstanceWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_NodeInstanceWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NodeInstanceWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,16 +119,16 @@
     <CustomBuild Include="Src\NoticeMessageBox.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="nodeinstancewidget.h">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="nodeinstance.h">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="Src\QTUtils.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Src\NIM.h">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\NodeInstance.h">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\NodeInstanceWidget.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>

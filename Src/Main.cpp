@@ -7,7 +7,7 @@
 
 #include "stdafx.h"
 #include "nim.h"
-#include "instancesettings.h"
+#include "NodeInstanceSettings.h"
 
 #include <QtGui/QApplication>
 
@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
 	QCoreApplication::setOrganizationDomain("equals-forty-two.com");
 	QCoreApplication::setApplicationName("NIM");
 
-	qRegisterMetaType<InstanceSettings>("InstanceSettings");
-	qRegisterMetaTypeStreamOperators<InstanceSettings>("InstanceSettings");
+	qRegisterMetaType<NodeInstanceSettings>("InstanceSettings");
+	qRegisterMetaTypeStreamOperators<NodeInstanceSettings>("InstanceSettings");
 
 	NIM w;
 	w.show();

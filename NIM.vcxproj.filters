@@ -58,9 +58,6 @@
     <ClCompile Include="nodeinstance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="instancesettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_nodeinstance.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
     <ClCompile Include="Src\NodeInstanceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\NodeInstanceSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_nim.h">
@@ -100,6 +100,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\NodeInstanceManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\NodeInstanceSettings.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,9 +117,6 @@
       <Filter>Source Files</Filter>
     </CustomBuild>
     <CustomBuild Include="nodeinstancewidget.h">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="instancesettings.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
     <CustomBuild Include="nim.h">

@@ -5,7 +5,7 @@
 
 #include "stdafx.h"
 #include "NodeInstanceManager.h"
-#include "instancesettings.h"
+#include "NodeInstanceSettings.h"
 
 #include <QSettings>
 
@@ -38,7 +38,7 @@ NodeInstance* NodeInstanceManager::CreateInstance()
 	return newInstance;
 }
 
-NodeInstance* NodeInstanceManager::CreateInstance(const InstanceSettings& settings)
+NodeInstance* NodeInstanceManager::CreateInstance(const NodeInstanceSettings& settings)
 {
 	NodeInstance* newInstance = new NodeInstance( settings );
 	mInstances.push_back( newInstance );
@@ -56,7 +56,7 @@ void NodeInstanceManager::Save(QSettings& settings)
 		if ( !nodeInstance->IsValid() )
 			continue;
 
-		InstanceSettings instanceSettings;
+		NodeInstanceSettings instanceSettings;
 		instanceSettings.scriptPath = nodeInstance->GetScriptPath();
 		instanceSettings.port = nodeInstance->GetPort();
 
@@ -83,11 +83,11 @@ void NodeInstanceManager::Load(const QSettings& settings)
 		if ( instanceSettings.isNull() )
 			break;
 
-		if ( !instanceSettings.canConvert<InstanceSettings>() )
+		if ( !instanceSettings.canConvert<NodeInstanceSettings>() )
 			break;
 
 		// Create node instance widget
-		CreateInstance( instanceSettings.value<InstanceSettings>() );
+		CreateInstance( instanceSettings.value<NodeInstanceSettings>() );
 	}
 }
 

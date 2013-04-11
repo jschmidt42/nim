@@ -6,17 +6,17 @@
 ///
 
 #include "StdAfx.h"
-#include "instancesettings.h"
+#include "NodeInstanceSettings.h"
 
 #include <QDataStream>
 
-QDataStream &operator<<(QDataStream &out, const InstanceSettings &obj)
+QDataStream &operator<<(QDataStream &out, const NodeInstanceSettings &obj)
 {
 	out << obj.scriptPath << obj.port;
 	return out;
 }
 
-QDataStream &operator>>(QDataStream &in, InstanceSettings &obj)
+QDataStream &operator>>(QDataStream &in, NodeInstanceSettings &obj)
 {
 	in >> obj.scriptPath >> obj.port;
 	return in;

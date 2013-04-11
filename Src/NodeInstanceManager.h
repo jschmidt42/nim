@@ -19,7 +19,7 @@ public: // Interface
 
 	/// Creates a new instance and return it
 	NodeInstance* CreateInstance();
-	NodeInstance* CreateInstance(const InstanceSettings& settings);
+	NodeInstance* CreateInstance(const NodeInstanceSettings& settings);
 
 	/// Returns the number of instances being managed
 	int GetInstanceCount() const;

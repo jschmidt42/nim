@@ -7,7 +7,7 @@
 
 #include "StdAfx.h"
 #include "nodeinstance.h"
-#include "instancesettings.h"
+#include "NodeInstanceSettings.h"
 
 NodeInstance::NodeInstance()
 	: mScriptPath()
@@ -16,7 +16,7 @@ NodeInstance::NodeInstance()
 {
 }
 
-NodeInstance::NodeInstance(const InstanceSettings& settings)
+NodeInstance::NodeInstance(const NodeInstanceSettings& settings)
 	: mScriptPath(settings.scriptPath)
 	, mPort(settings.port)
 {

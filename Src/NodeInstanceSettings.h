@@ -9,13 +9,13 @@
 
 #include <QMetaType>
 
-struct InstanceSettings
+struct NodeInstanceSettings
 {
 	QString scriptPath;
 	int     port;
 
-	friend QDataStream& operator<<(QDataStream &out, const InstanceSettings &obj);
-	friend QDataStream& operator>>(QDataStream &in, InstanceSettings &obj);
+	friend QDataStream& operator<<(QDataStream &out, const NodeInstanceSettings &obj);
+	friend QDataStream& operator>>(QDataStream &in, NodeInstanceSettings &obj);
 };
 
-Q_DECLARE_METATYPE(InstanceSettings);
+Q_DECLARE_METATYPE(NodeInstanceSettings);

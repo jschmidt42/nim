@@ -9,7 +9,7 @@
 
 #include <QProcess>
 
-class InstanceSettings;
+class NodeInstanceSettings;
 
 class NodeInstance : public QObject
 {
@@ -18,7 +18,7 @@ class NodeInstance : public QObject
 public:
 
 	NodeInstance();
-	explicit NodeInstance(const InstanceSettings& settings);
+	explicit NodeInstance(const NodeInstanceSettings& settings);
 	~NodeInstance();
 
 public: // Interface

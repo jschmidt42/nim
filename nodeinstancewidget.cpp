@@ -63,7 +63,9 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	mConfigButton->setToolButtonStyle( Qt::ToolButtonIconOnly );
 
 	mConfigButton->addAction( new QAction("Open Browser", mConfigButton) );
+	mConfigButton->addAction( new QAction("Open Explorer", mConfigButton) );
 	mConfigButton->addAction( new QAction("Edit Env. Vars.", mConfigButton) );
+	mConfigButton->addAction( new QAction("Log", mConfigButton) );
 	mConfigButton->addAction( new QAction("Debug", mConfigButton) );
 	mConfigButton->addAction( new QAction("Delete", mConfigButton) );
 	

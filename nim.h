@@ -30,7 +30,8 @@ protected Q_SLOTS:
 
 protected:
 
-	virtual void closeEvent(QCloseEvent* event);
+	virtual void closeEvent(QCloseEvent* event) override;
+	virtual void changeEvent(QEvent* event) override;
 
 private: // Implementation
 

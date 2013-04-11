@@ -8,6 +8,8 @@
 #include "stdafx.h"
 #include "nim.h"
 #include "nodeinstancewidget.h"
+#include "NoticeMessageBox.h"
+#include "QTUtils.h"
 
 #include <QSettings>
 
@@ -80,7 +82,17 @@ void NIM::SetConnections()
 
 void NIM::closeEvent(QCloseEvent* event)
 {
-	hide();
+	{
+		NoticeMessageBox minimizeWarning( "minimize", this );
+		minimizeWarning.SetTitle( tr("Minimize Warning") );
+		minimizeWarning.SetMessage( tr(
+			"This window will be minimized to the system tray.\n"
+			"Click on the system tray icon to open again.\n"
+			"Use the Exit button to fully close the application.") );
+		minimizeWarning.exec();
+	}
+	setWindowState( Qt::WindowMinimized );
+	//hide();
 	event->ignore();
 }
 
@@ -178,4 +190,17 @@ void NIM::OnCountActiveNodes()
 	trayIconPainter.end();
 	mTrayIcon.setIcon( QIcon(trayIconPixmap) );
 #endif
+}
+
+void NIM::changeEvent( QEvent* event )
+{
+	if( event->type() == QEvent::WindowStateChange )
+	{
+		if( isMinimized() )
+		{
+			QTUtils::SetTimeout( [this]() {
+				this->hide();
+			}, 300 );
+		}
+	}
 }

@@ -26,6 +26,12 @@
    <iconset resource="nim.qrc">
     <normaloff>:/NIM/Resources/main-icon.png</normaloff>:/NIM/Resources/main-icon.png</iconset>
   </property>
+  <property name="whatsThis">
+   <string notr="true"/>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>

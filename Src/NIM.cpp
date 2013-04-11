@@ -6,9 +6,9 @@
 ///
 
 #include "Precompiled.h"
-#include "nim.h"
+#include "NIM.h"
 
-#include "nodeinstancewidget.h"
+#include "NodeInstanceWidget.h"
 #include "NoticeMessageBox.h"
 #include "QTUtils.h"
 

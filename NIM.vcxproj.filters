@@ -34,9 +34,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="nim.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="nodeinstancewidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -82,17 +79,20 @@
     <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_nodeinstance.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_nim.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_nim.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Build.Output\GeneratedFiles\qrc_nim.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Precompiled.cpp">
       <Filter>PCH Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NIM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_NIM.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NIM.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,13 +122,13 @@
     <CustomBuild Include="nodeinstancewidget.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="nim.h">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="nodeinstance.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Src\QTUtils.h">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\NIM.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>

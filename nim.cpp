@@ -165,7 +165,9 @@ void NIM::CreateTrayIcon()
 void NIM::OnTrayActivated(QSystemTrayIcon::ActivationReason reason)
 {
 	if ( reason == QSystemTrayIcon::Trigger )
-		show();
+	{
+		showNormal();
+	}
 }
 
 void NIM::OnCountActiveNodes()

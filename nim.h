@@ -7,8 +7,9 @@
 
 #pragma once
 
+#include "NodeInstanceManager.h"
+
 #include "ui_nim.h"
-#include "instancemanager.h"
 
 #include <QtGui/QDialog>
 #include <QSystemTrayIcon>

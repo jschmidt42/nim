@@ -34,9 +34,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="nim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,9 +56,6 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="nodeinstance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="instancemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="instancesettings.cpp">
@@ -91,6 +85,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_QTUtils.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NodeInstanceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_nim.h">
@@ -99,7 +99,7 @@
     <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="instancemanager.h">
+    <ClInclude Include="Src\NodeInstanceManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

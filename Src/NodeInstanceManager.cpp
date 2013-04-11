@@ -4,7 +4,7 @@
 ///
 
 #include "stdafx.h"
-#include "instancemanager.h"
+#include "NodeInstanceManager.h"
 #include "instancesettings.h"
 
 #include <QSettings>

@@ -70,7 +70,7 @@ int NoticeMessageBox::exec()
 	if ( IsShowAgain() )
 		return QDialog::exec();
 
-	return QDialog::Rejected;
+	return QDialog::Accepted;
 }
 
 bool NoticeMessageBox::IsShowAgain() const

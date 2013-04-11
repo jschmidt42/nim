@@ -82,17 +82,16 @@ void NIM::SetConnections()
 
 void NIM::closeEvent(QCloseEvent* event)
 {
+	NoticeMessageBox minimizeWarning( "minimize", this );
+	minimizeWarning.SetTitle( tr("Minimize Warning") );
+	minimizeWarning.SetMessage( tr(
+		"This window will be minimized to the system tray.\n"
+		"Click on the system tray icon to open again.\n"
+		"Use the Exit button to fully close the application.") );
+	if ( minimizeWarning.exec() == QDialog::Accepted )
 	{
-		NoticeMessageBox minimizeWarning( "minimize", this );
-		minimizeWarning.SetTitle( tr("Minimize Warning") );
-		minimizeWarning.SetMessage( tr(
-			"This window will be minimized to the system tray.\n"
-			"Click on the system tray icon to open again.\n"
-			"Use the Exit button to fully close the application.") );
-		minimizeWarning.exec();
+		setWindowState( Qt::WindowMinimized );
 	}
-	setWindowState( Qt::WindowMinimized );
-	//hide();
 	event->ignore();
 }
 

@@ -9,6 +9,7 @@
 #include "NodeInstanceWidget.h"
 
 #include "QTUtils.h"
+#include "EnvVarEditor.h"
 
 #include <QHBoxLayout>
 #include <QLineEdit>
@@ -228,7 +229,11 @@ void NodeInstanceWidget::AddActionOpenExplorer()
 
 void NodeInstanceWidget::AddActionEditEnvVars()
 {
-	// TODO:
+	AddAction( tr("Edit Env. Vars."), [this](){
+		EnvVarEditor* envVarEditor =  new EnvVarEditor( mNodeInstance->GetVars(), this );
+		envVarEditor->setWindowTitle( tr("Variables: %1").arg( mNodeInstance->GetScriptPath() ) );
+		envVarEditor->show();
+	});
 }
 
 void NodeInstanceWidget::AddActionDebug()

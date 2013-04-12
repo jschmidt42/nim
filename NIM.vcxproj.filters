@@ -94,6 +94,15 @@
     <ClCompile Include="Build.Output\GeneratedFiles\qrc_nim.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_EnvVarEditor.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_EnvVarEditor.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\EnvVarEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\NodeInstanceManager.h">
@@ -133,6 +142,9 @@
     </CustomBuild>
     <CustomBuild Include="nim.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\EnvVarEditor.h">
+      <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

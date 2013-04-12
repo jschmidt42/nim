@@ -20,6 +20,8 @@ NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	, mTrayIcon( QIcon(":/NIM/Resources/main-icon.png"), this )
 	, mInstanceLayout(nullptr)
 {
+	QTUtils::Init();
+
 	setStyleSheet( QTUtils::ReadStyleSheet(":/NIM/Resources/theme.css") );
 
 	CreateTrayIcon();
@@ -163,6 +165,13 @@ void NIM::ValidatePorts()
 
 void NIM::CreateTrayIcon()
 {
+	QMenu* menu = new QMenu();
+	menu->addAction( QIcon(":/NIM/Resources/shutdown-icon.png"), "Open", _Q, _Q->Call( [this](){
+		this->showNormal();
+	} ) );
+	menu->addSeparator();
+	menu->addAction( QIcon(":/NIM/Resources/shutdown-icon.png"), "Exit", this, SLOT(accept()) );
+	mTrayIcon.setContextMenu( menu );
 	mTrayIcon.show();
 }
 

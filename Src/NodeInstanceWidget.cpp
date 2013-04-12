@@ -8,6 +8,8 @@
 #include "Precompiled.h"
 #include "NodeInstanceWidget.h"
 
+#include "QTUtils.h"
+
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
@@ -62,7 +64,26 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	mConfigButton->setPopupMode( QToolButton::InstantPopup );
 	mConfigButton->setToolButtonStyle( Qt::ToolButtonIconOnly );
 
-	mConfigButton->addAction( new QAction("Open Browser", mConfigButton) );
+	QAction* openBrowserAction = new QAction( tr("Open Browser"), mConfigButton );
+	connect( openBrowserAction, SIGNAL(triggered()), _Q, _Q->Call( [this](){
+		if ( !mNodeInstance->IsRunning() ) 
+		{
+			int result = QMessageBox::warning( this, "Node not running", "Node instance is not started.\n\nWould you like to start it?", 
+				QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::Yes );
+
+			if ( result == QMessageBox::Cancel )
+				return;
+
+			if ( result == QMessageBox::Yes )
+				mNodeInstance->Start();
+		}
+
+		int port = mNodeInstance->GetPort();
+		QDesktopServices::openUrl( tr("http://localhost:%1").arg(port) );
+	}));
+
+
+	mConfigButton->addAction( openBrowserAction );
 	mConfigButton->addAction( new QAction("Open Explorer", mConfigButton) );
 	mConfigButton->addAction( new QAction("Edit Env. Vars.", mConfigButton) );
 	mConfigButton->addAction( new QAction("Log", mConfigButton) );

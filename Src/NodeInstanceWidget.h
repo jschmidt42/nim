@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "nodeinstance.h"
+#include "NodeInstance.h"
 
 #include <QWidget>
 

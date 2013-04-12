@@ -17,6 +17,8 @@ class NodeInstance : public QObject
 
 public:
 
+	typedef QMap<QString, QString>  Vars;
+
 	NodeInstance();
 	explicit NodeInstance(const NodeInstanceSettings& settings);
 	~NodeInstance();
@@ -35,6 +37,9 @@ public: // Interface
 	void Stop();
 	bool IsRunning() const;
 
+	Vars& GetVars() { return mVars; }
+	const Vars& GetVars() const { return mVars; }
+
 protected Q_SLOTS:
 
 	void OnProcessStateChanged(QProcess::ProcessState state);
@@ -49,6 +54,7 @@ private:
 
 	QString  mScriptPath;
 	int      mPort;
+	Vars     mVars;
 
 	QProcess mProcess;
 };

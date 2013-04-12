@@ -64,31 +64,15 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	mConfigButton->setPopupMode( QToolButton::InstantPopup );
 	mConfigButton->setToolButtonStyle( Qt::ToolButtonIconOnly );
 
-	QAction* openBrowserAction = new QAction( tr("Open Browser"), mConfigButton );
-	connect( openBrowserAction, SIGNAL(triggered()), _Q, _Q->Call( [this](){
-		if ( !mNodeInstance->IsRunning() ) 
-		{
-			int result = QMessageBox::warning( this, "Node not running", "Node instance is not started.\n\nWould you like to start it?", 
-				QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::Yes );
-
-			if ( result == QMessageBox::Cancel )
-				return;
-
-			if ( result == QMessageBox::Yes )
-				mNodeInstance->Start();
-		}
-
-		int port = mNodeInstance->GetPort();
-		QDesktopServices::openUrl( tr("http://localhost:%1").arg(port) );
-	}));
-
-
-	mConfigButton->addAction( openBrowserAction );
-	mConfigButton->addAction( new QAction("Open Explorer", mConfigButton) );
-	mConfigButton->addAction( new QAction("Edit Env. Vars.", mConfigButton) );
-	mConfigButton->addAction( new QAction("Log", mConfigButton) );
-	mConfigButton->addAction( new QAction("Debug", mConfigButton) );
-	mConfigButton->addAction( new QAction("Delete", mConfigButton) );
+	//
+	// Add custom node actions
+	//
+	AddActionOpenBrowser();
+	AddActionOpenExplorer();
+	AddActionEditEnvVars();
+	AddActionLog();
+	AddActionDebug();
+	AddActionDelete();
 	
 	//
 	// Layout
@@ -202,4 +186,62 @@ void NodeInstanceWidget::OnNodeStateChanged(bool)
 	{
 		mStateButton->setIcon( QIcon(":/NIM/Resources/start-node.png") );
 	}
+}
+
+void NodeInstanceWidget::AddAction(const QString& actionName, std::function<void()> actionCallback)
+{
+	QAction* newAction = new QAction( actionName, mConfigButton );
+	mConfigButton->addAction( newAction );
+	connect( newAction, SIGNAL(triggered()), _Q, _Q->Call(actionCallback) );
+}
+
+void NodeInstanceWidget::AddActionOpenBrowser()
+{
+	AddAction( tr("Open Browser"), [this](){
+		if ( !mNodeInstance->IsRunning() ) 
+		{
+			int result = QMessageBox::warning( this, "Node not running", "Node instance is not started.\n\nWould you like to start it?", 
+				QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::Yes );
+
+			if ( result == QMessageBox::Cancel )
+				return;
+
+			if ( result == QMessageBox::Yes )
+				mNodeInstance->Start();
+		}
+
+		int port = mNodeInstance->GetPort();
+		QDesktopServices::openUrl( tr("http://localhost:%1").arg(port) );
+	});
+}
+
+void NodeInstanceWidget::AddActionOpenExplorer()
+{
+	AddAction( tr("Open Explorer"), [this](){
+		if ( !mNodeInstance->IsValid() )
+			return;
+
+		QFileInfo fi( mNodeInstance->GetScriptPath() );
+		QDesktopServices::openUrl(QUrl(QString("file:///%1").arg(fi.absolutePath()), QUrl::TolerantMode));
+	});
+}
+
+void NodeInstanceWidget::AddActionEditEnvVars()
+{
+	// TODO:
+}
+
+void NodeInstanceWidget::AddActionDebug()
+{
+	// TODO:
+}
+
+void NodeInstanceWidget::AddActionDelete()
+{
+	// TODO:
+}
+
+void NodeInstanceWidget::AddActionLog()
+{
+	// TODO:
 }

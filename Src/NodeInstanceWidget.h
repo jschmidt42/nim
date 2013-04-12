@@ -11,6 +11,8 @@
 
 #include <QWidget>
 
+#include <functional>
+
 class NodeInstanceWidget : public QWidget
 {
 	Q_OBJECT;
@@ -39,6 +41,16 @@ protected Q_SLOTS:
 Q_SIGNALS:
 
 	void PortEdited(int);
+
+private: // Details
+
+	void AddAction(const QString& actionName, std::function<void()> actionCallback);
+	void AddActionOpenBrowser();
+	void AddActionOpenExplorer();
+	void AddActionEditEnvVars();
+	void AddActionLog();
+	void AddActionDebug();
+	void AddActionDelete();
 
 private: // Controls
 	

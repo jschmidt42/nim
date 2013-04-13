@@ -60,6 +60,7 @@ void NodeInstanceManager::Save(QSettings& settings)
 		NodeInstanceSettings instanceSettings;
 		instanceSettings.scriptPath = nodeInstance->GetScriptPath();
 		instanceSettings.port = nodeInstance->GetPort();
+		instanceSettings.vars = nodeInstance->GetVars();
 
 		QString instanceKey = QString("instance%1").arg(regIdx);
 		QVariant varInstanceSettings = QVariant::fromValue(instanceSettings);

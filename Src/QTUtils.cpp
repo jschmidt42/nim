@@ -24,11 +24,69 @@ namespace QTUtils {
 		_Q = nullptr;
 	}
 
-
 	void QTUtils::SetTimeout(std::function<void()> callback, int timeout)
 	{
 		Internal::STimeout* timeoutWrapper = new Internal::STimeout(callback);
 		QTimer::singleShot( timeout, timeoutWrapper, SLOT(OnTimeout()) );
+	}
+
+	BlockSignalGuard::BlockSignalGuard( QObject* obj1, QObject* obj2, QObject* obj3, QObject* obj4, QObject* obj5,
+		QObject* obj6, QObject* obj7, QObject* obj8, QObject* obj9, QObject* obj10 )
+	{    
+		if ( obj1 )
+		{
+			mObjects.push_back(std::make_pair( obj1, obj1->signalsBlocked() ) );
+		}    
+		if (obj2)
+		{
+			mObjects.push_back(std::make_pair( obj2, obj2->signalsBlocked() ));
+		}
+		if (obj3)
+		{
+			mObjects.push_back(std::make_pair( obj3, obj3->signalsBlocked() ));
+		}
+		if (obj4)
+		{
+			mObjects.push_back(std::make_pair( obj4, obj4->signalsBlocked() ));
+		}
+		if (obj5)
+		{
+			mObjects.push_back(std::make_pair( obj5, obj5->signalsBlocked() ));
+		}
+		if (obj6)
+		{
+			mObjects.push_back(std::make_pair( obj6, obj6->signalsBlocked() ));
+		}
+		if (obj7)
+		{
+			mObjects.push_back(std::make_pair( obj7, obj7->signalsBlocked() ));
+		}
+		if (obj8)
+		{
+			mObjects.push_back(std::make_pair( obj8, obj8->signalsBlocked() ));
+		}
+		if (obj9)
+		{
+			mObjects.push_back(std::make_pair( obj9, obj9->signalsBlocked() ));
+		}
+		if (obj10)
+		{
+			mObjects.push_back(std::make_pair( obj10, obj10->signalsBlocked() ));
+		}
+
+
+		for ( size_t i = 0, count = mObjects.size(); i < count; ++i )
+		{
+			mObjects[i].second = mObjects[i].first->blockSignals(true);
+		}
+	}
+
+	BlockSignalGuard::~BlockSignalGuard()
+	{
+		for ( size_t i = 0, count = mObjects.size(); i < count; ++i )
+		{
+			mObjects[i].first->blockSignals(mObjects[i].second);
+		}
 	}
 
 	namespace Internal {

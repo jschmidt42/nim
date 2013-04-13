@@ -15,19 +15,30 @@ NodeInstance::NodeInstance()
 	, mPort(0)
 	, mProcess( this )
 {
+	// Add a few variables
+	mVars["INITSTART"] = "0";
+	mVars["HTTPROOT"] = "/";
+
+	Init();
 }
 
 NodeInstance::NodeInstance(const NodeInstanceSettings& settings)
 	: mScriptPath(settings.scriptPath)
 	, mPort(settings.port)
+	, mVars(settings.vars)
 {
-	connect( &mProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(OnProcessStateChanged(QProcess::ProcessState)) );
+	Init();
 }
 
 NodeInstance::~NodeInstance()
 {
 	mProcess.disconnect( this );
 	Stop();
+}
+
+void NodeInstance::Init()
+{
+	connect( &mProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(OnProcessStateChanged(QProcess::ProcessState)) );
 }
 
 void NodeInstance::SetScriptPath(const QString& path)
@@ -83,6 +94,12 @@ void NodeInstance::Start()
 	// Set env. vars.
 	QStringList env = QProcess::systemEnvironment();
 	env << QString("PORT=%1").arg(mPort);
+
+	for (auto it = mVars.begin(), end = mVars.end(); it != end; ++it)
+	{
+		env << QString("%1=%2").arg(it.key()).arg(it.value());
+	}
+
 	mProcess.setEnvironment(env);
 
 	// Start the process

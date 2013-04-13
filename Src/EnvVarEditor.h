@@ -26,11 +26,14 @@ protected: // Events
 
 protected Q_SLOTS:
 
+	void OnCellChanged(QTableWidgetItem* item);
+
 Q_SIGNALS:
 
 private: // Details
 
 	void LoadVars();
+	void AddNewEntry();
 
 private: // Controls
 

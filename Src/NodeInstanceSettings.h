@@ -13,6 +13,7 @@ struct NodeInstanceSettings
 {
 	QString scriptPath;
 	int     port;
+	QMap<QString, QString> vars;
 
 	friend QDataStream& operator<<(QDataStream &out, const NodeInstanceSettings &obj);
 	friend QDataStream& operator>>(QDataStream &in, NodeInstanceSettings &obj);

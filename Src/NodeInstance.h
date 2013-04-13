@@ -33,6 +33,7 @@ public: // Interface
 	int GetPort() const;
 	void SetPort(int port);
 
+	void Init();
 	void Start();
 	void Stop();
 	bool IsRunning() const;

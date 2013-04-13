@@ -24,6 +24,17 @@ namespace QTUtils {
 
 	QString ReadStyleSheet(const QString& url);	
 
+	class BlockSignalGuard
+	{
+	public:
+		BlockSignalGuard( QObject* obj1, QObject* obj2 = 0, QObject* obj3 = 0, QObject* obj4 = 0, QObject* obj5 = 0,
+			QObject* obj6 = 0, QObject* obj7 = 0, QObject* obj8 = 0, QObject* obj9 = 0, QObject* obj10 = 0 );
+		~BlockSignalGuard();
+	private:
+		std::vector<std::pair<QObject*, bool> > mObjects;
+	};
+
+
 	namespace Internal {
 
 		class GlobalQTReceiver : public QObject

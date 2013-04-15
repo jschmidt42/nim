@@ -21,7 +21,8 @@ NodeLogWindow::NodeLogWindow(NodeInstance* nodeInstance, QWidget *parent)
 {
 	QVBoxLayout* mainLayout = new QVBoxLayout(this);
 	
-	mLog = new QTextEdit("test...", this);
+	mLog = new QTextEdit(this);
+	mLog->setReadOnly( true );
 
 	QPushButton* closeButton = new QPushButton( tr("Close"), this );
 
@@ -29,10 +30,26 @@ NodeLogWindow::NodeLogWindow(NodeInstance* nodeInstance, QWidget *parent)
 	mainLayout->addWidget( closeButton, 0, Qt::AlignRight );
 
 	setLayout( mainLayout );
-
 	connect( closeButton, SIGNAL(clicked()), this, SLOT(deleteLater()) );
+
+	mQueryLogTimer.setInterval( 500 );
+	mQueryLogTimer.start();
+	connect( &mQueryLogTimer, SIGNAL(timeout()), _Q, _Q->Call([this](){
+		QString log = mNodeInstnace->GetLog();
+		if  ( !log.isEmpty() )
+		{
+			mLog->insertHtml( ToHTML(log) );
+			mLog->ensureCursorVisible();
+		}
+	}) );
+
 }
 
 NodeLogWindow::~NodeLogWindow()
 {
+}
+
+QString NodeLogWindow::ToHTML(const QString& log) const
+{
+	return log;
 }

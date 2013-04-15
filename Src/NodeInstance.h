@@ -38,6 +38,7 @@ public: // Interface
 	void Start();
 	void Stop();
 	bool IsRunning() const;
+	QString GetLog();
 
 	void EnableDebugging(bool value = true);
 	bool IsDebugEnabled() const;
@@ -55,7 +56,7 @@ Q_SIGNALS:
 	void PortChanged(int port);
 	void NodeStateChanged(bool);
 	void DebugStateChanged(bool);
-
+	
 private:
 
 	QString  mScriptPath;

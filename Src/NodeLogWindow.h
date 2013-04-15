@@ -32,9 +32,12 @@ Q_SIGNALS:
 
 private: // Details
 
+	QString ToHTML(const QString& log) const;
+
 private: // Controls
 
 	QTextEdit* mLog;
+	QTimer     mQueryLogTimer;
 	
 private: // Data
 

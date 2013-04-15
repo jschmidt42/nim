@@ -23,6 +23,7 @@ namespace QTUtils {
 	void Uninit();
 
 	void SetTimeout(TimeoutCallback callback, int timeout);
+	void SetInterval(TimeoutCallback callback, int timeout);
 
 	QString ReadStyleSheet(const QString& url);	
 

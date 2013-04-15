@@ -33,6 +33,13 @@ namespace QTUtils {
 		QTimer::singleShot( timeout, timeoutWrapper, SLOT(OnTimeout()) );
 	}
 
+	void SetInterval(TimeoutCallback callback, int timeout)
+	{
+		Internal::STimeout* timeoutWrapper = new Internal::STimeout(callback);
+		QTimer::singleShot( timeout, timeoutWrapper, SLOT(OnTimeout()) );
+	}
+
+
 	BlockSignalGuard::BlockSignalGuard( QObject* obj1, QObject* obj2, QObject* obj3, QObject* obj4, QObject* obj5,
 		QObject* obj6, QObject* obj7, QObject* obj8, QObject* obj9, QObject* obj10 )
 	{    
@@ -130,8 +137,10 @@ namespace QTUtils {
 			if (id < 0)
 				return id;
 			
-			mFuncs[id].callback();
+			Func slotCallback = mFuncs[id].callback;
 			id -= mFuncs.size();
+
+			slotCallback();
 
 			return id;
 		}

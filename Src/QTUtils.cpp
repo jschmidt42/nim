@@ -199,8 +199,6 @@ namespace QTUtils {
 			mMetaObject.d.stringdata = &mMetaString[0];
 			mMetaObject.d.data       = &mMetaData[0];
 			mMetaObject.d.extradata  = nullptr;
-
-			//Q_ASSERT( mMetaObject == mFuncs.size() );
 		}
 
 	} // end namespace Internal

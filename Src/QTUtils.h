@@ -59,12 +59,6 @@ namespace QTUtils {
 		protected Q_SLOTS:
 
 			void func1();
-		/*	void test2();
-			void test3();
-			void test66();
-			void test3(int, QString);
-			void test4();
-			void test4(int, int, int);*/
 
 		private:
 

@@ -103,6 +103,15 @@
     <ClCompile Include="Src\EnvVarEditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Debug\moc_NodeLogWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.Output\GeneratedFiles\Release\moc_NodeLogWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NodeLogWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\NodeInstanceManager.h">
@@ -144,6 +153,9 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Src\EnvVarEditor.h">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Src\NodeLogWindow.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>

@@ -110,12 +110,16 @@ namespace QTUtils {
 		{
 			std::stringstream ss;
 			ss << "func" << mNextId++ << "()";
-			mFuncs[ss.str()] = slotCallback;
+
+			FuncInfo fi;
+			fi.name = ss.str();
+			fi.slotName = "1"+fi.name;
+			fi.callback = slotCallback;
+
+			mFuncs.push_back( fi );
 			FillMetaStructs();
 						
-			mFuncNamePool.push_back( std::shared_ptr<std::string>( new std::string("1" + ss.str()) ) );
-			return mFuncNamePool.back()->c_str();
-			// not thread safe.
+			return mFuncs.back().slotName.c_str();
 		}
 
 		int GlobalQTReceiver::qt_metacall(QMetaObject::Call call, int id, void** args)
@@ -126,10 +130,7 @@ namespace QTUtils {
 			if (id < 0)
 				return id;
 			
-			auto funcItr = mFuncs.begin();
-			std::advance(funcItr, id);
-			Q_ASSERT( funcItr != mFuncs.end() );
-			funcItr->second();
+			mFuncs[id].callback();
 			id -= mFuncs.size();
 
 			return id;
@@ -179,8 +180,8 @@ namespace QTUtils {
 			int offset = sizeof(objectName)+1;
 			for (auto it = mFuncs.begin(), end = mFuncs.end(); it != end; ++it)
 			{
-				size_t funcNameLength = it->first.size();
-				const char* funcName = it->first.c_str();
+				size_t funcNameLength = it->name.size();
+				const char* funcName = it->name.c_str();
 				mMetaString.insert(mMetaString.end(), funcName, funcName+funcNameLength);
 				mMetaString.push_back('\0');
 
@@ -189,7 +190,7 @@ namespace QTUtils {
 				mMetaData.push_back( 36 ); // type
 				mMetaData.push_back( 36 ); // tag
 				mMetaData.push_back( 0x09 ); // flags
-				offset += it->first.size()+1;
+				offset += it->name.size()+1;
 			}
 
 			// eod

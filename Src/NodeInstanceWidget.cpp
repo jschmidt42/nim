@@ -11,6 +11,7 @@
 #include "QTUtils.h"
 #include "EnvVarEditor.h"
 #include "NoticeMessageBox.h"
+#include "NodeLogWindow.h"
 
 #include <QHBoxLayout>
 #include <QLineEdit>
@@ -269,8 +270,11 @@ QAction* NodeInstanceWidget::AddActionDelete()
 
 QAction* NodeInstanceWidget::AddActionLog()
 {
-	// TODO:
-	return nullptr;
+	return AddAction( tr("Log"), [this]() {
+		NodeLogWindow* logWindow =  new NodeLogWindow( mNodeInstance, this );
+		logWindow->setWindowTitle( tr("Log: %1").arg( mNodeInstance->GetScriptPath() ) );
+		logWindow->show();
+	});
 }
 
 void NodeInstanceWidget::OnNodeDebugStateChanged(bool debug)

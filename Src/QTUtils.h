@@ -62,10 +62,16 @@ namespace QTUtils {
 
 		private:
 
+			struct FuncInfo {
+				std::string name;
+				std::string slotName;
+				Func callback;
+			};
+
 			void FillMetaStructs();
 
 			int mNextId;
-			std::map<std::string, Func> mFuncs;
+			std::vector<FuncInfo> mFuncs;
 			std::vector<uint> mMetaData;
 			std::vector<char> mMetaString;
 			QMetaObject mMetaObject;

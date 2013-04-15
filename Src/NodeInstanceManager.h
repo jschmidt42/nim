@@ -9,6 +9,8 @@
 
 #include "nodeinstance.h"
 
+class QSettings;
+
 class NodeInstanceManager
 {
 public:

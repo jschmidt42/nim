@@ -8,6 +8,7 @@
 #pragma once
 
 #include <QProcess>
+#include <QMap>
 
 class NodeInstanceSettings;
 

@@ -7,6 +7,11 @@
 
 #pragma once
 
+#include <QDialog>
+
+class QLabel;
+class QCheckBox;
+
 class NoticeMessageBox : public QDialog
 {
 	Q_OBJECT;

@@ -12,6 +12,8 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QToolButton>
+#include <QTableWidget>
+#include <QTableWidgetItem>
 
 namespace {
 

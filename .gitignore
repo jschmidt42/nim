@@ -22,3 +22,7 @@
 /*.vcxproj.vspscc
 /Win32/
 /Build.Output/
+/moc_*
+/nim.app/
+/ui_*
+/qrc_*.cpp

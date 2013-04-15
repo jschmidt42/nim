@@ -13,6 +13,10 @@
 
 #include <functional>
 
+class QLineEdit;
+class QPushButton;
+class QToolButton;
+
 class NodeInstanceWidget : public QWidget
 {
 	Q_OBJECT;

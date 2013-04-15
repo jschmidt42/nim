@@ -13,6 +13,9 @@
 
 #include <functional>
 
+class QTableWidget;
+class QTableWidgetItem;
+
 class EnvVarEditor : public QDialog
 {
 	Q_OBJECT;

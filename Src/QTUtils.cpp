@@ -24,7 +24,7 @@ namespace QTUtils {
 		_Q = nullptr;
 	}
 
-	void QTUtils::SetTimeout(std::function<void()> callback, int timeout)
+	void SetTimeout(std::function<void()> callback, int timeout)
 	{
 		Internal::STimeout* timeoutWrapper = new Internal::STimeout(callback);
 		QTimer::singleShot( timeout, timeoutWrapper, SLOT(OnTimeout()) );

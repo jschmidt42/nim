@@ -100,3 +100,17 @@ NodeInstance* NodeInstanceManager::GetInstance(int idx) const
 	Q_ASSERT( idx >= 0 && idx < mInstances.count() );
 	return mInstances.at( idx );
 }
+
+void NodeInstanceManager::DeleteInstance(NodeInstance* nodeInstanceToDelete)
+{
+	for (int i = 0; i < mInstances.count(); ++i)
+	{
+		NodeInstance* nodeInstance = mInstances[i];
+		if ( nodeInstanceToDelete == nodeInstance )
+		{
+			delete nodeInstanceToDelete;
+			mInstances.removeAll( nodeInstanceToDelete );
+			return;
+		}
+	}
+}

@@ -69,15 +69,15 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	//
 	// Add custom node actions
 	//
+	mEnableDebuggingAction = AddActionDebug();
+	mEnableDebuggingAction->setCheckable( true );
+	mEnableDebuggingAction->setChecked( mNodeInstance->IsDebugEnabled() );
+
 	AddActionOpenBrowser();
 	AddActionOpenExplorer();
 	AddActionEditEnvVars();
 	AddActionLog();
-	mEnableDebuggingAction = AddActionDebug();
 	AddActionDelete();
-
-	mEnableDebuggingAction->setCheckable( true );
-	mEnableDebuggingAction->setChecked( mNodeInstance->IsDebugEnabled() );
 	
 	//
 	// Layout
@@ -261,8 +261,10 @@ QAction* NodeInstanceWidget::AddActionDebug()
 
 QAction* NodeInstanceWidget::AddActionDelete()
 {
-	// TODO:
-	return nullptr;
+	return AddAction( tr("Delete"), [this](){
+		deleteLater();
+		emit DeleteNodeInstance(mNodeInstance);
+	});
 }
 
 QAction* NodeInstanceWidget::AddActionLog()
@@ -274,4 +276,9 @@ QAction* NodeInstanceWidget::AddActionLog()
 void NodeInstanceWidget::OnNodeDebugStateChanged(bool debug)
 {
 	mEnableDebuggingAction->setChecked( debug );
+}
+
+NodeInstance* NodeInstanceWidget::Instance() const
+{
+	return mNodeInstance;
 }

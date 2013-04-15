@@ -28,6 +28,7 @@ protected Q_SLOTS:
 	void OnValidatePorts();
 	void OnTrayActivated(QSystemTrayIcon::ActivationReason reason);
 	void OnCountActiveNodes();
+	void OnDeleteNodeInstance(NodeInstance*);
 
 protected:
 
@@ -53,6 +54,6 @@ private: // Controls
 
 private: // Data
 
-	NodeInstanceManager mInstanceManager;
+	NodeInstanceManager mNodeInstanceManager;
 
 };

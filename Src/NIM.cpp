@@ -64,9 +64,9 @@ void NIM::CreateUI()
 void NIM::PopulateUI()
 {
 	// Create node instance widgets and populate the UI
-	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
+	for (int i = 0; i < mNodeInstanceManager.GetInstanceCount(); ++i)
 	{
-		NodeInstance* nodeInstance = mInstanceManager.GetInstance(i);
+		NodeInstance* nodeInstance = mNodeInstanceManager.GetInstance(i);
 		InsertNodeInstanceWidget( i, nodeInstance );
 	}
 
@@ -112,8 +112,8 @@ void NIM::OnAddInstance()
 
 void NIM::AddNewNodeInstanceWidget()
 {
-	NodeInstance* newInstance = mInstanceManager.CreateInstance();
-	InsertNodeInstanceWidget( mInstanceManager.GetInstanceCount()-1, newInstance );
+	NodeInstance* newInstance = mNodeInstanceManager.CreateInstance();
+	InsertNodeInstanceWidget( mNodeInstanceManager.GetInstanceCount()-1, newInstance );
 }
 
 void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
@@ -122,6 +122,7 @@ void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
 	mInstanceLayout->insertWidget( idx, nodeInstanceWidget );
 
 	connect( nodeInstanceWidget, SIGNAL(PortEdited(int)), this, SLOT(OnValidatePorts()) );
+	connect( nodeInstanceWidget, SIGNAL(DeleteNodeInstance(NodeInstance*)), this, SLOT(OnDeleteNodeInstance(NodeInstance*)) );
 	connect( nodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnCountActiveNodes()) );
 }
 
@@ -133,22 +134,22 @@ void NIM::OnValidatePorts()
 void NIM::ValidatePorts()
 {
 	// Clear all warning first
-	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
+	for (int i = 0; i < mNodeInstanceManager.GetInstanceCount(); ++i)
 	{
 		NodeInstanceWidget* nodeInstWidget = qobject_cast<NodeInstanceWidget*>( mInstanceLayout->itemAt(i)->widget() );
 		nodeInstWidget->ClearPortWarning();
 	}
 
 	// Validate all node instance port with each other
-	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
+	for (int i = 0; i < mNodeInstanceManager.GetInstanceCount(); ++i)
 	{
-		NodeInstance* nodeInstance = mInstanceManager.GetInstance(i);
+		NodeInstance* nodeInstance = mNodeInstanceManager.GetInstance(i);
 
-		for (int j = i; j < mInstanceManager.GetInstanceCount(); ++j)
+		for (int j = i; j < mNodeInstanceManager.GetInstanceCount(); ++j)
 		{
 			if ( i != j )
 			{
-				NodeInstance* otherNodeInstance = mInstanceManager.GetInstance(j);
+				NodeInstance* otherNodeInstance = mNodeInstanceManager.GetInstance(j);
 
 				if ( nodeInstance->GetPort() == otherNodeInstance->GetPort() )
 				{
@@ -218,4 +219,9 @@ void NIM::changeEvent( QEvent* event )
 			}, 300 );
 		}
 	}
+}
+
+void NIM::OnDeleteNodeInstance(NodeInstance* nodeInstance)
+{
+	mNodeInstanceManager.DeleteInstance( nodeInstance );	
 }

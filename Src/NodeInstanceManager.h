@@ -29,6 +29,9 @@ public: // Interface
 	/// Returns a given node instance
 	NodeInstance* GetInstance(int idx) const;
 
+	/// Delete a given instance
+	void DeleteInstance(NodeInstance* nodeInstance);
+
 public: // Serialization
 
 	/// Saves node instances into application settings
@@ -36,7 +39,7 @@ public: // Serialization
 
 	/// Loads node settings and create node instances
 	void Load(const QSettings& settings);
-
+	
 private:
 
 	QList<NodeInstance*> mInstances;

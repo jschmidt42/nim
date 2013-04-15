@@ -26,6 +26,8 @@ public:
 	NodeInstanceWidget(NodeInstance* instance, QWidget *parent = 0);
 	~NodeInstanceWidget();
 
+	NodeInstance* Instance() const;
+
 	void SetPortWarning();
 	void ClearPortWarning();
 
@@ -46,6 +48,7 @@ protected Q_SLOTS:
 Q_SIGNALS:
 
 	void PortEdited(int);
+	void DeleteNodeInstance(NodeInstance*);
 
 private: // Details
 

@@ -6,6 +6,9 @@
 #include "Precompiled.h"
 #include "QTUtils.h"
 
+#include <QDebug>
+#include <QtGlobal>
+
 #include <sstream>
 
 QTUtils::Internal::GlobalQTReceiver* _Q = nullptr;
@@ -109,10 +112,9 @@ namespace QTUtils {
 			ss << "func" << mNextId++ << "()";
 			mFuncs[ss.str()] = slotCallback;
 			FillMetaStructs();
-			// not thread safe.
-			static std::string ret;
-			ret = "1" + ss.str(); 
-			return ret.c_str();
+						
+			mFuncNamePool.push_back( std::shared_ptr<std::string>( new std::string("1" + ss.str()) ) );
+			return mFuncNamePool.back()->c_str();
 			// not thread safe.
 		}
 
@@ -120,12 +122,17 @@ namespace QTUtils {
 		{
 			Q_ASSERT( call == QMetaObject::InvokeMetaMethod );
 
-			std::stringstream ss;
-			ss << "func" << id-4 << "()";
+			id = QObject::qt_metacall(call, id, args);
+			if (id < 0)
+				return id;
+			
+			auto funcItr = mFuncs.begin();
+			std::advance(funcItr, id);
+			Q_ASSERT( funcItr != mFuncs.end() );
+			funcItr->second();
+			id -= mFuncs.size();
 
-			mFuncs[ss.str()]();
-
-			return 0;
+			return id;
 		}
 
 		void* GlobalQTReceiver::qt_metacast( const char *_clname )
@@ -192,6 +199,8 @@ namespace QTUtils {
 			mMetaObject.d.stringdata = &mMetaString[0];
 			mMetaObject.d.data       = &mMetaData[0];
 			mMetaObject.d.extradata  = nullptr;
+
+			//Q_ASSERT( mMetaObject == mFuncs.size() );
 		}
 
 	} // end namespace Internal

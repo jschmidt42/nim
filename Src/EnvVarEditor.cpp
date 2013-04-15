@@ -17,6 +17,9 @@
 
 namespace {
 
+	const int kNameColumnIdx = 0;
+	const int kValueColumnIdx = 1;
+
 	const int kRowHeight = 20;
 
 	const int kOriginalValueRole = Qt::UserRole+1;
@@ -30,8 +33,8 @@ EnvVarEditor::EnvVarEditor(NodeInstance::Vars& vars, QWidget *parent)
 	QVBoxLayout* mainLayout = new QVBoxLayout(this);
 	mTable = new QTableWidget(vars.count(), 2, this);
 	mTable->setHorizontalHeaderLabels( QStringList() << "Name" << "Value" );
-	mTable->horizontalHeader()->setResizeMode( 0, QHeaderView::Interactive );
-	mTable->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
+	mTable->horizontalHeader()->setResizeMode( kNameColumnIdx, QHeaderView::Interactive );
+	mTable->horizontalHeader()->setResizeMode( kValueColumnIdx, QHeaderView::Stretch );
 	mTable->verticalHeader()->hide();
 
 	LoadVars();
@@ -64,8 +67,8 @@ void EnvVarEditor::LoadVars()
 		nameItem->setData( kOriginalValueRole, it.key() );
 		valueItem->setData( kOriginalValueRole, it.value() );
 
-		mTable->setItem(row, 0, nameItem);
-		mTable->setItem(row, 1, valueItem);
+		mTable->setItem(row, kNameColumnIdx, nameItem);
+		mTable->setItem(row, kValueColumnIdx, valueItem);
 
 		mTable->setRowHeight( row, kRowHeight );
 
@@ -86,26 +89,26 @@ void EnvVarEditor::OnCellChanged(QTableWidgetItem* item)
 {
 	QTUtils::BlockSignalGuard blockSignal( mTable );
 
-	if ( item->column() == 0 )
+	if ( item->column() == kNameColumnIdx )
 	{
 		QString newKey = item->text();
 		QString oldKey = item->data(kOriginalValueRole).toString();
-		QString oldValue;
 
-		// get old value key
+		QTableWidgetItem* valueItem = mTable->item( item->row(), kValueColumnIdx );
+		QString value = valueItem ? valueItem->text() : "";
+
+		// Delete old key if found
 		auto fItr = mVars.find( oldKey );
-		
 		if ( fItr != mVars.end() )
 		{
-			oldValue = fItr.value();
-			// delete old key
 			mVars.erase( fItr );
 		}
 
+		// Set new key and value
 		if ( !newKey.isEmpty() )
 		{
 			// set new key
-			mVars[ newKey ] = oldValue;
+			mVars[ newKey ] = value;
 			item->setData( kOriginalValueRole, newKey );
 
 			if ( item->row() == mTable->rowCount() - 1 )
@@ -114,9 +117,16 @@ void EnvVarEditor::OnCellChanged(QTableWidgetItem* item)
 			}
 		}
 	}
-	else if ( item->column() == 1 )
+	else if ( item->column() == kValueColumnIdx )
 	{
-		QString key = mTable->item( item->row(), 0 )->text();
-		mVars[ key ] = item->text();
+		QTableWidgetItem* keyItem = mTable->item( item->row(), kNameColumnIdx );
+		if ( keyItem )
+		{
+			QString key = keyItem->text();
+			if ( !key.isEmpty() )
+			{
+				mVars[ key ] = item->text();
+			}
+		}
 	}
 }

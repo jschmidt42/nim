@@ -12,12 +12,12 @@
 
 QDataStream &operator<<(QDataStream &out, const NodeInstanceSettings &obj)
 {
-	out << obj.scriptPath << obj.port << obj.vars;
+	out << obj.scriptPath << obj.port << obj.vars << obj.debug;
 	return out;
 }
 
 QDataStream &operator>>(QDataStream &in, NodeInstanceSettings &obj)
 {
-	in >> obj.scriptPath >> obj.port >> obj.vars;
+	in >> obj.scriptPath >> obj.port >> obj.vars >> obj.debug;
 	return in;
 }

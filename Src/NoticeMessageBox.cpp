@@ -44,17 +44,25 @@ void NoticeMessageBox::CreateUI()
 	mShowAgainCheckbox = new QCheckBox("Show message again?");
 	mShowAgainCheckbox->setChecked( IsShowAgain() );
 	
+	QHBoxLayout* buttonLayout = new QHBoxLayout();
 	QPushButton* okButton = new QPushButton("OK");
 	okButton->setFixedWidth( 50 );
 	okButton->setDefault( true );
 
+	QPushButton* cancelButton = new QPushButton("Cancel");
+	cancelButton->setFixedWidth( 50 );
+
+	buttonLayout->addWidget( okButton );
+	buttonLayout->addWidget( cancelButton );
+
 	mainLayout->addWidget( mMessageLabel, 1 );
 	mainLayout->addWidget( mShowAgainCheckbox, 0, Qt::AlignCenter );
-	mainLayout->addWidget( okButton, 0, Qt::AlignCenter );
+	mainLayout->addLayout( buttonLayout, 0 );
 
 	mainLayout->setSizeConstraint( QLayout::SetFixedSize );
 
 	connect( okButton, SIGNAL(clicked()), this, SLOT(accept()) );
+	connect( cancelButton, SIGNAL(clicked()), this, SLOT(reject()) );
 
 	setLayout( mainLayout );
 }

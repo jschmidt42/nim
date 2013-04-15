@@ -31,6 +31,7 @@ It is useful to have a single view on all your node instances that are running a
 			- Special variables:
 				- INITSTART=1: start node when application starts
 				- HTTPROOT=a_root/sub_folder: path concatenated when opening the node in the browser (e.g. *http://localhost:9999/a_root/sub_folder*)
+				- DEBUGPORT=2600: used to override the 5858 default node debug port
 		- **Log**: opens a log window of the running node process.
 		- **Debug**: adds the *debug* argument to the node process to be debugged
 		- **Delete**: deletes the node instance slot 
@@ -46,7 +47,7 @@ It is useful to have a single view on all your node instances that are running a
 
 ## Improvements (TODO)
 
-- Port on Mac
+- Port on Mac (partly done, just need to fix UI a bit)
 - Port on Linux
 - Start all nodes at once
 - Group nodes
@@ -55,6 +56,14 @@ It is useful to have a single view on all your node instances that are running a
 
 ## Requirements
 
+### Windows
+
 - Install Visual Studio 2010
 - Install [Qt libraries 4.8.4 for Windows (VS 2010, 234 MB)](http://releases.qt-project.org/qt4/source/qt-win-opensource-4.8.4-vs2010.exe "QT 4.8.4")
 - Install [Visual Studio Add-in 1.1.11 for Qt4](http://releases.qt-project.org/vsaddin/qt-vs-addin-1.1.11-opensource.exe)
+
+### Mac
+
+- Install QT 4.8.4 for Mac
+- Install xcode tools (xcode > preferences > downloads > install command line tools)
+- Type `make`

@@ -14,6 +14,7 @@ NodeInstance::NodeInstance()
 	: mScriptPath()
 	, mPort(0)
 	, mProcess( this )
+	, mDebug(false)
 {
 	// Add a few variables
 	mVars["INITSTART"] = "0";
@@ -26,6 +27,7 @@ NodeInstance::NodeInstance(const NodeInstanceSettings& settings)
 	: mScriptPath(settings.scriptPath)
 	, mPort(settings.port)
 	, mVars(settings.vars)
+	, mDebug(settings.debug)
 {
 	Init();
 }
@@ -88,6 +90,15 @@ void NodeInstance::Start()
 	QFileInfo scriptFileInfo( mScriptPath );
 
 	QStringList  arguments;
+	if ( mDebug )
+	{
+		bool isPortValid = false;
+		int debugPort = mVars["DEBUGPORT"].toInt(&isPortValid);
+		if ( isPortValid )
+			arguments << tr("--debug=%1").arg(debugPort);
+		else
+			arguments << tr("debug");
+	}
 	arguments << scriptFileInfo.fileName();
 	mProcess.setWorkingDirectory( scriptFileInfo.absolutePath() );
 	
@@ -119,4 +130,18 @@ bool NodeInstance::IsRunning() const
 void NodeInstance::OnProcessStateChanged(QProcess::ProcessState state)
 {
 	emit NodeStateChanged( IsRunning() );
+}
+
+void NodeInstance::EnableDebugging(bool value /*= true*/)
+{
+	if ( mDebug != value )
+	{
+		mDebug = value;
+		emit DebugStateChanged( mDebug );
+	}
+}
+
+bool NodeInstance::IsDebugEnabled() const
+{
+	return mDebug;
 }

@@ -10,6 +10,7 @@
 
 #include "QTUtils.h"
 #include "EnvVarEditor.h"
+#include "NoticeMessageBox.h"
 
 #include <QHBoxLayout>
 #include <QLineEdit>
@@ -72,8 +73,11 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	AddActionOpenExplorer();
 	AddActionEditEnvVars();
 	AddActionLog();
-	AddActionDebug();
+	mEnableDebuggingAction = AddActionDebug();
 	AddActionDelete();
+
+	mEnableDebuggingAction->setCheckable( true );
+	mEnableDebuggingAction->setChecked( mNodeInstance->IsDebugEnabled() );
 	
 	//
 	// Layout
@@ -93,6 +97,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 
 	connect( mNodeInstance, SIGNAL(ScriptPathChanged(const QString&)), mScriptPathEdit, SLOT(setText(const QString&)) );
 	connect( mNodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnNodeStateChanged(bool)) );
+	connect( mNodeInstance, SIGNAL(DebugStateChanged(bool)), this, SLOT(OnNodeDebugStateChanged(bool)) );
 
 	setLayout( mainLayout );
 }
@@ -189,16 +194,17 @@ void NodeInstanceWidget::OnNodeStateChanged(bool)
 	}
 }
 
-void NodeInstanceWidget::AddAction(const QString& actionName, std::function<void()> actionCallback)
+QAction* NodeInstanceWidget::AddAction(const QString& actionName, std::function<void()> actionCallback)
 {
 	QAction* newAction = new QAction( actionName, mConfigButton );
 	mConfigButton->addAction( newAction );
 	connect( newAction, SIGNAL(triggered()), _Q, _Q->Call(actionCallback) );
+	return newAction;
 }
 
-void NodeInstanceWidget::AddActionOpenBrowser()
+QAction* NodeInstanceWidget::AddActionOpenBrowser()
 {
-	AddAction( tr("Open Browser"), [this](){
+	return AddAction( tr("Open Browser"), [this](){
 		if ( !mNodeInstance->IsRunning() ) 
 		{
 			int result = QMessageBox::warning( this, "Node not running", "Node instance is not started.\n\nWould you like to start it?", 
@@ -216,9 +222,9 @@ void NodeInstanceWidget::AddActionOpenBrowser()
 	});
 }
 
-void NodeInstanceWidget::AddActionOpenExplorer()
+QAction* NodeInstanceWidget::AddActionOpenExplorer()
 {
-	AddAction( tr("Open Explorer"), [this](){
+	return AddAction( tr("Open Explorer"), [this](){
 		if ( !mNodeInstance->IsValid() )
 			return;
 
@@ -227,26 +233,45 @@ void NodeInstanceWidget::AddActionOpenExplorer()
 	});
 }
 
-void NodeInstanceWidget::AddActionEditEnvVars()
+QAction* NodeInstanceWidget::AddActionEditEnvVars()
 {
-	AddAction( tr("Edit Env. Vars."), [this](){
+	return AddAction( tr("Edit Env. Vars."), [this](){
 		EnvVarEditor* envVarEditor =  new EnvVarEditor( mNodeInstance->GetVars(), this );
 		envVarEditor->setWindowTitle( tr("Variables: %1").arg( mNodeInstance->GetScriptPath() ) );
 		envVarEditor->show();
 	});
 }
 
-void NodeInstanceWidget::AddActionDebug()
+QAction* NodeInstanceWidget::AddActionDebug()
 {
-	// TODO:
+	return AddAction( tr("Enable Debugging"), [this](){
+		if ( mNodeInstance->IsRunning() )
+		{
+			NoticeMessageBox runningWarning( "debug", this );
+			runningWarning.SetTitle( tr("Node running...") );
+			runningWarning.SetMessage( tr(
+				"The node process is already running.\n"
+				"Restart process process for this change to take effect.") );
+			runningWarning.exec();
+		}
+
+		mNodeInstance->EnableDebugging( mEnableDebuggingAction->isChecked() );
+	});
 }
 
-void NodeInstanceWidget::AddActionDelete()
+QAction* NodeInstanceWidget::AddActionDelete()
 {
 	// TODO:
+	return nullptr;
 }
 
-void NodeInstanceWidget::AddActionLog()
+QAction* NodeInstanceWidget::AddActionLog()
 {
 	// TODO:
+	return nullptr;
+}
+
+void NodeInstanceWidget::OnNodeDebugStateChanged(bool debug)
+{
+	mEnableDebuggingAction->setChecked( debug );
 }

@@ -41,6 +41,7 @@ protected Q_SLOTS:
 	void OnPortEdited();
 	void OnNodeStateToggled();
 	void OnNodeStateChanged(bool);
+	void OnNodeDebugStateChanged(bool);
 
 Q_SIGNALS:
 
@@ -48,13 +49,13 @@ Q_SIGNALS:
 
 private: // Details
 
-	void AddAction(const QString& actionName, std::function<void()> actionCallback);
-	void AddActionOpenBrowser();
-	void AddActionOpenExplorer();
-	void AddActionEditEnvVars();
-	void AddActionLog();
-	void AddActionDebug();
-	void AddActionDelete();
+	QAction* AddAction(const QString& actionName, std::function<void()> actionCallback);
+	QAction* AddActionOpenBrowser();
+	QAction* AddActionOpenExplorer();
+	QAction* AddActionEditEnvVars();
+	QAction* AddActionLog();
+	QAction* AddActionDebug();
+	QAction* AddActionDelete();
 
 private: // Controls
 	
@@ -63,6 +64,7 @@ private: // Controls
 	QLineEdit*   mPortEdit;
 	QPushButton* mStateButton;
 	QToolButton* mConfigButton;
+	QAction*     mEnableDebuggingAction;
 
 private: // Data
 

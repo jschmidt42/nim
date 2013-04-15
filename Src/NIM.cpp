@@ -44,7 +44,10 @@ void NIM::CreateUI()
 {
 	mUI.setupUi(this);
 
-	mUI.Title->setText( tr("<html><div style='color:#FFFFFF;font-size:200%'>N</font><font color='#AFD06C'>o</font>de <font color='#77982E'>js</font> Instance Manager</div></html>") );
+	mUI.Title->setText( tr(
+		"<html>"
+			"<div style='color:#FFF;font-size:200%'>N</font><font color='#AFD06C'>o</font>de <font color='#77982E'>js</font> Instance Manager</div>"
+		"</html>") );
 
 	mInstanceLayout = new QVBoxLayout();
 	mInstanceLayout->setSpacing(2);
@@ -113,21 +116,18 @@ void NIM::AddNewNodeInstanceWidget()
 	InsertNodeInstanceWidget( mInstanceManager.GetInstanceCount()-1, newInstance );
 }
 
-
 void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
 {
 	NodeInstanceWidget* nodeInstanceWidget = new NodeInstanceWidget( nodeInstance );
 	mInstanceLayout->insertWidget( idx, nodeInstanceWidget );
+
 	connect( nodeInstanceWidget, SIGNAL(PortEdited(int)), this, SLOT(OnValidatePorts()) );
-	
 	connect( nodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnCountActiveNodes()) );
 }
-
 
 void NIM::OnValidatePorts()
 {
 	ValidatePorts();
-
 }
 
 void NIM::ValidatePorts()

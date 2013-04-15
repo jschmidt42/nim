@@ -39,6 +39,9 @@ public: // Interface
 	void Stop();
 	bool IsRunning() const;
 
+	void EnableDebugging(bool value = true);
+	bool IsDebugEnabled() const;
+
 	Vars& GetVars() { return mVars; }
 	const Vars& GetVars() const { return mVars; }
 
@@ -51,12 +54,14 @@ Q_SIGNALS:
 	void ScriptPathChanged(const QString& path);
 	void PortChanged(int port);
 	void NodeStateChanged(bool);
+	void DebugStateChanged(bool);
 
 private:
 
 	QString  mScriptPath;
 	int      mPort;
 	Vars     mVars;
+	bool     mDebug;
 
 	QProcess mProcess;
 };

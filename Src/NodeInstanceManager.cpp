@@ -62,6 +62,7 @@ void NodeInstanceManager::Save(QSettings& settings)
 		instanceSettings.scriptPath = nodeInstance->GetScriptPath();
 		instanceSettings.port = nodeInstance->GetPort();
 		instanceSettings.vars = nodeInstance->GetVars();
+		instanceSettings.debug = nodeInstance->IsDebugEnabled();
 
 		QString instanceKey = QString("instance%1").arg(regIdx);
 		QVariant varInstanceSettings = QVariant::fromValue(instanceSettings);

@@ -146,13 +146,27 @@ bool NodeInstance::IsDebugEnabled() const
 	return mDebug;
 }
 
-QString NodeInstance::GetLog()
+QString NodeInstance::ReadLog()
 {
 	char buf[1024];
 	qint64 lineLength = mProcess.readLine(buf, sizeof(buf));
-	if (lineLength != -1) {
+	if (lineLength != -1) 
+	{
+
+		mLog += buf;
+		if ( mLog.size() >= 20000 )
+		{
+			// Clean log a bit
+			mLog.remove(0, 2000);
+		}
+
 		// the line is available in buf
 		return QString(buf);
 	}
 	return "";
+}
+
+QString NodeInstance::GetLog() const
+{
+	return mLog;
 }

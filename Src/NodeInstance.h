@@ -38,7 +38,8 @@ public: // Interface
 	void Start();
 	void Stop();
 	bool IsRunning() const;
-	QString GetLog();
+	QString ReadLog();
+	QString GetLog() const;
 
 	void EnableDebugging(bool value = true);
 	bool IsDebugEnabled() const;
@@ -63,6 +64,7 @@ private:
 	int      mPort;
 	Vars     mVars;
 	bool     mDebug;
+	QString  mLog;
 
 	QProcess mProcess;
 };

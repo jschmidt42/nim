@@ -32,6 +32,7 @@ Q_SIGNALS:
 
 private: // Details
 
+	QString GetColorTag(const QString& code) const;
 	QString ToHTML(const QString& log) const;
 
 private: // Controls
@@ -41,6 +42,7 @@ private: // Controls
 	
 private: // Data
 
+	QString       mWindowId;
 	NodeInstance* mNodeInstnace;
 
 };

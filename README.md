@@ -1,4 +1,4 @@
-# node.js instance manager
+# [node.js](http://www.nodejs.org) instance manager
 
 node.js instance manager is a simple application that lets you manage the execution of multiple instance of node.js applications. 
 You can play/stop many instances and monitor them using a simple UI that reside in the system tray. You can 
@@ -33,7 +33,9 @@ It is useful to have a single view on all your node instances that are running a
 				- INITSTART=1: start node when application starts
 				- HTTPROOT=a_root/sub_folder: path concatenated when opening the node in the browser (e.g. *http://localhost:9999/a_root/sub_folder*)
 				- DEBUGPORT=2600: used to override the 5858 default node debug port
+			- ![vars](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/vars.png)
 		- **Log**: opens a log window of the running node process.
+			- - ![log](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/log.png)
 		- **Debug**: adds the *debug* argument to the node process to be debugged
 		- **Delete**: deletes the node instance slot 
 - When you minimize the application it will be hidden from the application taskbar and a icon will be available in the system tray to re-open it.
@@ -54,6 +56,9 @@ It is useful to have a single view on all your node instances that are running a
 - Group nodes
 	- Start all nodes of a group
 - Sort node instance slots (using a small drag and drop widget?)
+- Save logs
+- See in the log window stderr
+- Detect all started node.exe process and list them as new slots
 
 ## Requirements
 

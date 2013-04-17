@@ -10,7 +10,7 @@
 #include <QProcess>
 #include <QMap>
 
-class NodeInstanceSettings;
+struct NodeInstanceSettings;
 
 class NodeInstance : public QObject
 {

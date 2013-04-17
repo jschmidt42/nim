@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0297B8E865DE834E0AEE83F9 /* NIM.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 83E87F0B882ABC8E32AB2646 /* NIM.cpp */; settings = {ATTRIBUTES = (); }; };
+		1CC8BBAC722FE3FAE6486201 /* moc_NoticeMessageBox.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = BD12FCAB0BD0B7C67123E6EF /* moc_NoticeMessageBox.cpp */; settings = {ATTRIBUTES = (); }; };
+		3305B4E1618C53A7FD967757 /* Precompiled.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 5134B77AEC99B131C77B9CAA /* Precompiled.cpp */; settings = {ATTRIBUTES = (); }; };
+		3476F1EF5B12B7BAB202BD75 /* NodeInstanceManager.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 3A0E1386F2FEBAA5A98E7A2A /* NodeInstanceManager.cpp */; settings = {ATTRIBUTES = (); }; };
+		4B6C8B6D7488588515B950DE /* moc_NodeInstance.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = DA2E4AB7389711BBDE8B94FA /* moc_NodeInstance.cpp */; settings = {ATTRIBUTES = (); }; };
+		612269D54B96B2D14D424AE7 /* NodeLogWindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = F715BE5A573CF0F7F3337F51 /* NodeLogWindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		69D70B4CF3A9050AF078FC2E /* moc_NodeLogWindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7C8794401258597849DE9D2A /* moc_NodeLogWindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		77C0692D277F44084792AD89 /* Main.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = DED9EBD65092B815AF8E5B71 /* Main.cpp */; settings = {ATTRIBUTES = (); }; };
+		876EA1D3670BC247CB6423D7 /* EnvVarEditor.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D142F6335F52C8ABBDF57616 /* EnvVarEditor.cpp */; settings = {ATTRIBUTES = (); }; };
+		8ADCE7564D98EC2E7DFA1D9F /* moc_NodeInstanceWidget.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 58403EA2FB9416388CAD02CF /* moc_NodeInstanceWidget.cpp */; settings = {ATTRIBUTES = (); }; };
+		9B9930A1CD99D39E0EFE2A9D /* NodeInstance.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = AD3B8969E11B6056B454B03E /* NodeInstance.cpp */; settings = {ATTRIBUTES = (); }; };
+		B0AA84FC0ED9EFF2F6D61C40 /* QtGui.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = FA02AE8231DA1D5BEDD78B1A /* QtGui.framework */; };
+		CABB00F4C1A175AD4FEADE11 /* moc_NIM.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7D5E3852A8D045E0FA416E97 /* moc_NIM.cpp */; settings = {ATTRIBUTES = (); }; };
+		D4DB0ED90521ED4F73AB1602 /* NoticeMessageBox.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 5848BEF2DBF9EA04C11E087C /* NoticeMessageBox.cpp */; settings = {ATTRIBUTES = (); }; };
+		E2372C9D834168E5D9A1B1C1 /* QtCore.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = DE5DF8BFF74ED44C56958A12 /* QtCore.framework */; };
+		E2D7C7D581E481A1BE1BB834 /* moc_EnvVarEditor.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 2765974F37F9025BFC2A02AE /* moc_EnvVarEditor.cpp */; settings = {ATTRIBUTES = (); }; };
+		F2B467BF119F1FD487ED996D /* NodeInstanceWidget.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 60E3B6A4CB6B388F85EE2463 /* NodeInstanceWidget.cpp */; settings = {ATTRIBUTES = (); }; };
+		F8095E33298840E6CB45B137 /* QTUtils.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = A2E35D53F09A3134639F94BC /* QTUtils.cpp */; settings = {ATTRIBUTES = (); }; };
+		F885892A51A403D98595B514 /* NodeInstanceSettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 84F86A7E8629C781F7F4CF2B /* NodeInstanceSettings.cpp */; settings = {ATTRIBUTES = (); }; };
+		FD7CBB27C6D324D90ACC3CC1 /* qrc_nim.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 781BE368550FE761CBA0E4F5 /* qrc_nim.cpp */; settings = {ATTRIBUTES = (); }; };
+		FFEE486F162FB1C76F8BED06 /* moc_QTUtils.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 98305F13D04F140E83B61181 /* moc_QTUtils.cpp */; settings = {ATTRIBUTES = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2765974F37F9025BFC2A02AE /* moc_EnvVarEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_EnvVarEditor.cpp; sourceTree = SOURCE_ROOT; };
+		384AD567153A567C3D5ED5A3 /* NodeInstanceSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NodeInstanceSettings.h; path = Src/NodeInstanceSettings.h; sourceTree = SOURCE_ROOT; };
+		3A0E1386F2FEBAA5A98E7A2A /* NodeInstanceManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NodeInstanceManager.cpp; path = Src/NodeInstanceManager.cpp; sourceTree = SOURCE_ROOT; };
+		3B017ABD43C477127C833DBC /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = SOURCE_ROOT; };
+		48CF872D470D45B16BEA8C70 /* NIM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIM.h; path = Src/NIM.h; sourceTree = SOURCE_ROOT; };
+		48EFE799171E38D3000EEBB7 /* nim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5134B77AEC99B131C77B9CAA /* Precompiled.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Precompiled.cpp; path = Src/Precompiled.cpp; sourceTree = SOURCE_ROOT; };
+		58403EA2FB9416388CAD02CF /* moc_NodeInstanceWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_NodeInstanceWidget.cpp; sourceTree = SOURCE_ROOT; };
+		5848BEF2DBF9EA04C11E087C /* NoticeMessageBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NoticeMessageBox.cpp; path = Src/NoticeMessageBox.cpp; sourceTree = SOURCE_ROOT; };
+		60E3B6A4CB6B388F85EE2463 /* NodeInstanceWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NodeInstanceWidget.cpp; path = Src/NodeInstanceWidget.cpp; sourceTree = SOURCE_ROOT; };
+		673D214ADE34C88A3E4D4B90 /* NodeLogWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NodeLogWindow.h; path = Src/NodeLogWindow.h; sourceTree = SOURCE_ROOT; };
+		67828ED6E54AF3EB16CF701A /* NodeInstance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NodeInstance.h; path = Src/NodeInstance.h; sourceTree = SOURCE_ROOT; };
+		6C19069030B72CDDA4381B3D /* NIM.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = NIM.ui; path = UI/NIM.ui; sourceTree = SOURCE_ROOT; };
+		781BE368550FE761CBA0E4F5 /* qrc_nim.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qrc_nim.cpp; sourceTree = SOURCE_ROOT; };
+		79C135E4C6C31548F63C17AF /* NodeInstanceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NodeInstanceManager.h; path = Src/NodeInstanceManager.h; sourceTree = SOURCE_ROOT; };
+		7C8794401258597849DE9D2A /* moc_NodeLogWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_NodeLogWindow.cpp; sourceTree = SOURCE_ROOT; };
+		7D5E3852A8D045E0FA416E97 /* moc_NIM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_NIM.cpp; sourceTree = SOURCE_ROOT; };
+		83750E61CDB289E780C33AA9 /* QTUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QTUtils.h; path = Src/QTUtils.h; sourceTree = SOURCE_ROOT; };
+		83E87F0B882ABC8E32AB2646 /* NIM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NIM.cpp; path = Src/NIM.cpp; sourceTree = SOURCE_ROOT; };
+		84F86A7E8629C781F7F4CF2B /* NodeInstanceSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NodeInstanceSettings.cpp; path = Src/NodeInstanceSettings.cpp; sourceTree = SOURCE_ROOT; };
+		95FFE973628E9ED5950682CB /* nim.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = nim.qrc; sourceTree = SOURCE_ROOT; };
+		98305F13D04F140E83B61181 /* moc_QTUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_QTUtils.cpp; sourceTree = SOURCE_ROOT; };
+		9B5E532A72B44A8839D05FDA /* ui_NIM.h */ = {isa = PBXFileReference; lastKnownFileType = file; path = ui_NIM.h; sourceTree = SOURCE_ROOT; };
+		A2E35D53F09A3134639F94BC /* QTUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = QTUtils.cpp; path = Src/QTUtils.cpp; sourceTree = SOURCE_ROOT; };
+		AD3B8969E11B6056B454B03E /* NodeInstance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NodeInstance.cpp; path = Src/NodeInstance.cpp; sourceTree = SOURCE_ROOT; };
+		BD12FCAB0BD0B7C67123E6EF /* moc_NoticeMessageBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_NoticeMessageBox.cpp; sourceTree = SOURCE_ROOT; };
+		CB40DE7D50F19128DABBC9CE /* NoticeMessageBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoticeMessageBox.h; path = Src/NoticeMessageBox.h; sourceTree = SOURCE_ROOT; };
+		D142F6335F52C8ABBDF57616 /* EnvVarEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EnvVarEditor.cpp; path = Src/EnvVarEditor.cpp; sourceTree = SOURCE_ROOT; };
+		D51481B9DB08C380EB34C3DD /* Precompiled.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Precompiled.h; path = Src/Precompiled.h; sourceTree = SOURCE_ROOT; };
+		DA2E4AB7389711BBDE8B94FA /* moc_NodeInstance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_NodeInstance.cpp; sourceTree = SOURCE_ROOT; };
+		DE5DF8BFF74ED44C56958A12 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = "/usr/local/Trolltech/Qt-4.8.5/lib/QtCore.framework"; sourceTree = "<absolute>"; };
+		DE630CEC9F2137DC789F94E1 /* nim.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = nim.pro; sourceTree = SOURCE_ROOT; };
+		DED9EBD65092B815AF8E5B71 /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = Src/Main.cpp; sourceTree = SOURCE_ROOT; };
+		E688FC93FEDE5B8FA2546F67 /* EnvVarEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EnvVarEditor.h; path = Src/EnvVarEditor.h; sourceTree = SOURCE_ROOT; };
+		E9ECFC5BCCD1DB7B33069FAD /* NodeInstanceWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NodeInstanceWidget.h; path = Src/NodeInstanceWidget.h; sourceTree = SOURCE_ROOT; };
+		F715BE5A573CF0F7F3337F51 /* NodeLogWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NodeLogWindow.cpp; path = Src/NodeLogWindow.cpp; sourceTree = SOURCE_ROOT; };
+		FA02AE8231DA1D5BEDD78B1A /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = "/usr/local/Trolltech/Qt-4.8.5/lib/QtGui.framework"; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0AA84FC0ED9EFF2F6D61C40 /* QtGui.framework in Frameworks & Libraries */,
+				E2372C9D834168E5D9A1B1C1 /* QtCore.framework in Frameworks & Libraries */,
+			);
+			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03CF06F728FA49722BD955F4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6C19069030B72CDDA4381B3D /* NIM.ui */,
+			);
+			name = UI;
+			sourceTree = "<Group>";
+		};
+		05596AB53D8D521C69802C27 /* nim */ = {
+			isa = PBXGroup;
+			children = (
+				FB61758D0F0FDA4BA867C3D5 /* Sources */,
+				46E892BBB6BB6952967E0561 /* Temporary Sources */,
+				883D7615C4D2DE3FA1218F12 /* Headers */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				52C235EBF1C9B07808119459 /* Sources [RCC] */,
+				EEC299C65D5017EB9DD513B0 /* Sources [UIC] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+				48EFE79A171E38D3000EEBB7 /* Products */,
+			);
+			name = nim;
+			sourceTree = "<Group>";
+		};
+		46E892BBB6BB6952967E0561 /* Temporary Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2765974F37F9025BFC2A02AE /* moc_EnvVarEditor.cpp */,
+				7D5E3852A8D045E0FA416E97 /* moc_NIM.cpp */,
+				DA2E4AB7389711BBDE8B94FA /* moc_NodeInstance.cpp */,
+				58403EA2FB9416388CAD02CF /* moc_NodeInstanceWidget.cpp */,
+				7C8794401258597849DE9D2A /* moc_NodeLogWindow.cpp */,
+				BD12FCAB0BD0B7C67123E6EF /* moc_NoticeMessageBox.cpp */,
+				98305F13D04F140E83B61181 /* moc_QTUtils.cpp */,
+				781BE368550FE761CBA0E4F5 /* qrc_nim.cpp */,
+				9B5E532A72B44A8839D05FDA /* ui_NIM.h */,
+			);
+			name = "Temporary Sources";
+			sourceTree = "<Group>";
+		};
+		4796EB658BD89DC646419DCA /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				E688FC93FEDE5B8FA2546F67 /* EnvVarEditor.h */,
+				48CF872D470D45B16BEA8C70 /* NIM.h */,
+				67828ED6E54AF3EB16CF701A /* NodeInstance.h */,
+				79C135E4C6C31548F63C17AF /* NodeInstanceManager.h */,
+				384AD567153A567C3D5ED5A3 /* NodeInstanceSettings.h */,
+				E9ECFC5BCCD1DB7B33069FAD /* NodeInstanceWidget.h */,
+				673D214ADE34C88A3E4D4B90 /* NodeLogWindow.h */,
+				CB40DE7D50F19128DABBC9CE /* NoticeMessageBox.h */,
+				D51481B9DB08C380EB34C3DD /* Precompiled.h */,
+				83750E61CDB289E780C33AA9 /* QTUtils.h */,
+			);
+			name = Src;
+			sourceTree = "<Group>";
+		};
+		48EFE79A171E38D3000EEBB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48EFE799171E38D3000EEBB7 /* nim.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52C235EBF1C9B07808119459 /* Sources [RCC] */ = {
+			isa = PBXGroup;
+			children = (
+				95FFE973628E9ED5950682CB /* nim.qrc */,
+			);
+			name = "Sources [RCC]";
+			sourceTree = "<Group>";
+		};
+		73DD539819415F2BD61A88F1 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				D142F6335F52C8ABBDF57616 /* EnvVarEditor.cpp */,
+				DED9EBD65092B815AF8E5B71 /* Main.cpp */,
+				83E87F0B882ABC8E32AB2646 /* NIM.cpp */,
+				AD3B8969E11B6056B454B03E /* NodeInstance.cpp */,
+				3A0E1386F2FEBAA5A98E7A2A /* NodeInstanceManager.cpp */,
+				84F86A7E8629C781F7F4CF2B /* NodeInstanceSettings.cpp */,
+				60E3B6A4CB6B388F85EE2463 /* NodeInstanceWidget.cpp */,
+				F715BE5A573CF0F7F3337F51 /* NodeLogWindow.cpp */,
+				5848BEF2DBF9EA04C11E087C /* NoticeMessageBox.cpp */,
+				5134B77AEC99B131C77B9CAA /* Precompiled.cpp */,
+				A2E35D53F09A3134639F94BC /* QTUtils.cpp */,
+			);
+			name = Src;
+			sourceTree = "<Group>";
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				DE630CEC9F2137DC789F94E1 /* nim.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = "<Group>";
+		};
+		883D7615C4D2DE3FA1218F12 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3B017ABD43C477127C833DBC /* resource.h */,
+				4796EB658BD89DC646419DCA /* Src */,
+			);
+			name = Headers;
+			sourceTree = "<Group>";
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FA02AE8231DA1D5BEDD78B1A /* QtGui.framework */,
+				DE5DF8BFF74ED44C56958A12 /* QtCore.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<Group>";
+		};
+		EEC299C65D5017EB9DD513B0 /* Sources [UIC] */ = {
+			isa = PBXGroup;
+			children = (
+				03CF06F728FA49722BD955F4 /* UI */,
+			);
+			name = "Sources [UIC]";
+			sourceTree = "<Group>";
+		};
+		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				73DD539819415F2BD61A88F1 /* Src */,
+			);
+			name = Sources;
+			sourceTree = "<Group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C9C291FF894F0313C8BEBDCE /* nim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17B3380A4D6A7D415E7F2E1E /* Build configuration list for PBXNativeTarget "nim" */;
+			buildPhases = (
+				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nim;
+			productName = nim;
+			productReference = 48EFE799171E38D3000EEBB7 /* nim.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = CC82A9286117DFED018F418F /* Build configuration list for PBXProject "nim" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 05596AB53D8D521C69802C27 /* nim */;
+			productRefGroup = 48EFE79A171E38D3000EEBB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9C291FF894F0313C8BEBDCE /* nim */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Bundle Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/jschmidt/Projects/nim -f 'nim.xcodeproj/qt_preprocess.mak'";
+		};
+		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Qmake";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/jschmidt/Projects/nim -f 'nim.xcodeproj/qt_makeqmake.mak'";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				876EA1D3670BC247CB6423D7 /* EnvVarEditor.cpp in Build Sources */,
+				77C0692D277F44084792AD89 /* Main.cpp in Build Sources */,
+				0297B8E865DE834E0AEE83F9 /* NIM.cpp in Build Sources */,
+				9B9930A1CD99D39E0EFE2A9D /* NodeInstance.cpp in Build Sources */,
+				3476F1EF5B12B7BAB202BD75 /* NodeInstanceManager.cpp in Build Sources */,
+				F885892A51A403D98595B514 /* NodeInstanceSettings.cpp in Build Sources */,
+				F2B467BF119F1FD487ED996D /* NodeInstanceWidget.cpp in Build Sources */,
+				612269D54B96B2D14D424AE7 /* NodeLogWindow.cpp in Build Sources */,
+				D4DB0ED90521ED4F73AB1602 /* NoticeMessageBox.cpp in Build Sources */,
+				3305B4E1618C53A7FD967757 /* Precompiled.cpp in Build Sources */,
+				F8095E33298840E6CB45B137 /* QTUtils.cpp in Build Sources */,
+				E2D7C7D581E481A1BE1BB834 /* moc_EnvVarEditor.cpp in Build Sources */,
+				CABB00F4C1A175AD4FEADE11 /* moc_NIM.cpp in Build Sources */,
+				4B6C8B6D7488588515B950DE /* moc_NodeInstance.cpp in Build Sources */,
+				8ADCE7564D98EC2E7DFA1D9F /* moc_NodeInstanceWidget.cpp in Build Sources */,
+				69D70B4CF3A9050AF078FC2E /* moc_NodeLogWindow.cpp in Build Sources */,
+				1CC8BBAC722FE3FAE6486201 /* moc_NoticeMessageBox.cpp in Build Sources */,
+				FFEE486F162FB1C76F8BED06 /* moc_QTUtils.cpp in Build Sources */,
+				FD7CBB27C6D324D90ACC3CC1 /* qrc_nim.cpp in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B72B24813252891014BCF61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/Trolltech/Qt-4.8.5/lib/QtCore.framework/Versions/4/Headers",
+					"/usr/local/Trolltech/Qt-4.8.5/include/QtCore",
+					"/usr/local/Trolltech/Qt-4.8.5/lib/QtGui.framework/Versions/4/Headers",
+					"/usr/local/Trolltech/Qt-4.8.5/include/QtGui",
+					"/usr/local/Trolltech/Qt-4.8.5/include",
+					.,
+					Src,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Trolltech/Qt-4.8.5/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+				);
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/usr/local/Trolltech/Qt-4.8.5/lib",
+					"-F/usr/local/Trolltech/Qt-4.8.5/lib",
+					"-L/usr/local/Trolltech/Qt-4.8.5/lib",
+					"-F/usr/local/Trolltech/Qt-4.8.5/lib",
+				);
+				PRODUCT_NAME = nim;
+			};
+			name = Debug;
+		};
+		8C7174830A1E4DCBA0332EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = nim;
+			};
+			name = Release;
+		};
+		BEC09A62E69C3553534FF35E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = nim;
+			};
+			name = Debug;
+		};
+		D70590BEB531B51029F711BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/Trolltech/Qt-4.8.5/lib/QtCore.framework/Versions/4/Headers",
+					"/usr/local/Trolltech/Qt-4.8.5/include/QtCore",
+					"/usr/local/Trolltech/Qt-4.8.5/lib/QtGui.framework/Versions/4/Headers",
+					"/usr/local/Trolltech/Qt-4.8.5/include/QtGui",
+					"/usr/local/Trolltech/Qt-4.8.5/include",
+					.,
+					Src,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Trolltech/Qt-4.8.5/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+					"/usr/local/Trolltech/Qt-4.8.5/lib",
+				);
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/usr/local/Trolltech/Qt-4.8.5/lib",
+					"-F/usr/local/Trolltech/Qt-4.8.5/lib",
+					"-L/usr/local/Trolltech/Qt-4.8.5/lib",
+					"-F/usr/local/Trolltech/Qt-4.8.5/lib",
+				);
+				PRODUCT_NAME = nim;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17B3380A4D6A7D415E7F2E1E /* Build configuration list for PBXNativeTarget "nim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEC09A62E69C3553534FF35E /* Debug */,
+				8C7174830A1E4DCBA0332EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC82A9286117DFED018F418F /* Build configuration list for PBXProject "nim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B72B24813252891014BCF61 /* Debug */,
+				D70590BEB531B51029F711BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
+}

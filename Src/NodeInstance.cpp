@@ -13,8 +13,8 @@
 NodeInstance::NodeInstance()
 	: mScriptPath()
 	, mPort(0)
-	, mProcess( this )
 	, mDebug(false)
+	, mProcess( this )
 {
 	Init();
 }
@@ -134,7 +134,7 @@ bool NodeInstance::IsRunning() const
 	return mProcess.state() != QProcess::NotRunning;
 }
 
-void NodeInstance::OnProcessStateChanged(QProcess::ProcessState state)
+void NodeInstance::OnProcessStateChanged(QProcess::ProcessState)
 {
 	emit NodeStateChanged( IsRunning() );
 }

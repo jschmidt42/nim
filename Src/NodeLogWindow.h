@@ -10,6 +10,7 @@
 #include "NodeInstance.h"
 
 #include <QDialog>
+#include <QTimer>
 
 #include <functional>
 

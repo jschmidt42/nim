@@ -226,7 +226,8 @@ QAction* NodeInstanceWidget::AddActionOpenBrowser()
 		}
 
 		int port = mNodeInstance->GetPort();
-		QDesktopServices::openUrl( tr("http://localhost:%1").arg(port) );
+		QString root = mNodeInstance->GetEnvValue( "HTTPROOT" );
+		QDesktopServices::openUrl( tr("http://localhost:%1/%2").arg(port).arg(root) );
 	});
 }
 

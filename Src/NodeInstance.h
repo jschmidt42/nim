@@ -46,6 +46,7 @@ public: // Interface
 
 	Vars& GetVars() { return mVars; }
 	const Vars& GetVars() const { return mVars; }
+	QString GetEnvValue(const QString& key, const QString& defaultValue = "") const;
 
 protected Q_SLOTS:
 
@@ -57,7 +58,7 @@ Q_SIGNALS:
 	void PortChanged(int port);
 	void NodeStateChanged(bool);
 	void DebugStateChanged(bool);
-	
+
 private:
 
 	QString  mScriptPath;

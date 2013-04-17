@@ -107,7 +107,11 @@ void NodeInstance::Start()
 	
 	// Set env. vars.
 	QStringList env = QProcess::systemEnvironment();
-	env << QString("PORT=%1").arg(mPort);
+	
+	if ( mPort > 0 )
+	{
+		env << QString("PORT=%1").arg(mPort);
+	}
 
 	for (auto it = mVars.begin(), end = mVars.end(); it != end; ++it)
 	{
@@ -151,12 +155,13 @@ bool NodeInstance::IsDebugEnabled() const
 
 QString NodeInstance::ReadLog()
 {
-	char buf[1024];
-	qint64 lineLength = mProcess.readLine(buf, sizeof(buf));
-	if (lineLength != -1) 
+	QString log;
+	char lineBuf[1024];
+	qint64 lineLength = mProcess.readLine(lineBuf, sizeof(lineBuf));
+	while (lineLength > 0) 
 	{
 
-		mLog += buf;
+		mLog += lineBuf;
 		if ( mLog.size() >= 20000 )
 		{
 			// Clean log a bit
@@ -164,12 +169,26 @@ QString NodeInstance::ReadLog()
 		}
 
 		// the line is available in buf
-		return QString(buf);
+		log += lineBuf;
+
+		lineLength = mProcess.readLine(lineBuf, sizeof(lineBuf));
 	}
-	return "";
+	return log;
 }
 
 QString NodeInstance::GetLog() const
 {
 	return mLog;
+}
+
+QString NodeInstance::GetEnvValue(const QString& key, const QString& defaultValue) const
+{
+	auto fItr = mVars.find( key );
+
+	if ( fItr != mVars.end() )
+	{
+		return fItr.value();
+	}
+
+	return defaultValue;
 }

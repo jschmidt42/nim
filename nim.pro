@@ -7,6 +7,11 @@ TARGET =
 DEPENDPATH += . Src UI
 INCLUDEPATH += . Src
 
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
+
+QMAKE_CXXFLAGS += -std=c++11 -stdlib=libc++
+QMAKE_LFLAGS += -stdlib=libc++
+
 # Input
 HEADERS += resource.h \
            Src/EnvVarEditor.h \
@@ -32,3 +37,9 @@ SOURCES += Src/EnvVarEditor.cpp \
            Src/Precompiled.cpp \
            Src/QTUtils.cpp
 RESOURCES += nim.qrc
+
+DESTDIR = build.output
+OBJECTS_DIR = build.output/.obj
+MOC_DIR = build.output/.moc
+RCC_DIR = build.output/.rcc
+UI_DIR = build.output/.ui

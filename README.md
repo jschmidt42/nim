@@ -4,8 +4,8 @@ node.js instance manager is a simple application that lets you manage the execut
 You can play/stop many instances and monitor them using a simple UI that reside in the system tray. You can 
 specify the port of all instances and many other process parameters.
  
-[Download ~5MB](https://github.com/jschmidt42/nim/raw/master/Build/VS2010/Setup/Release/NIM.msi)  
-[Source](https://github.com/jschmidt42/nim) 
+[Download (Win32) ~5MB](https://github.com/jschmidt42/nim/raw/master/Build/VS2010/Setup/Release/NIM.msi)  
+[Source on GitHub](https://github.com/jschmidt42/nim) 
 
 ## Motivation
 
@@ -70,6 +70,9 @@ It is useful to have a single view on all your node instances that are running a
 
 ### Mac
 
-- Install QT 4.8.4 for Mac
 - Install xcode tools (xcode > preferences > downloads > install command line tools)
-- Type `make`
+- `git clone` && `configure` && `make` && `sudo make install`[QT 4.8.5 for Mac](http://qt.gitorious.org/qt/qt)
+- `> export PATH=/usr/local/Trolltech/Qt-4.8.5/bin:$PATH`
+- `> qmake -spec /usr/local/Trolltech/Qt-4.8.5/mkspecs/unsupported/macx-clang/`
+- `> make`
+- `> ls build.output/nim.app`

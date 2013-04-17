@@ -11,6 +11,7 @@
 *.la
 *.a
 # Visual studio generated files
+setup.exe
 /Debug/
 /GeneratedFiles/
 *.opensdf

@@ -26,6 +26,13 @@ NodeInstance::NodeInstance(const NodeInstanceSettings& settings)
 	, mDebug(settings.debug)
 {
 	Init();
+
+	bool isValid = false;
+	int initStart = mVars["INITSTART"].toInt(&isValid);
+	if ( isValid && initStart == 1 )
+	{
+		Start();
+	}
 }
 
 NodeInstance::~NodeInstance()

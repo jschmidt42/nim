@@ -3,9 +3,9 @@
 node.js instance manager is a simple application that lets you manage the execution of multiple instance of node.js applications. 
 You can play/stop many instances and monitor them using a simple UI that reside in the system tray. You can 
 specify the port of all instances and many other process parameters.
-
-[Source](https://github.com/jschmidt42/nim)
-[Download](https://github.com/jschmidt42/nim/raw/master/Build/VS2010/Setup/Release/NIM.msi)
+ 
+[Download ~5MB](https://github.com/jschmidt42/nim/raw/master/Build/VS2010/Setup/Release/NIM.msi)  
+[Source](https://github.com/jschmidt42/nim) 
 
 ## Motivation
 

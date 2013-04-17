@@ -61,6 +61,8 @@ private: // Details
 	QAction* AddActionDebug();
 	QAction* AddActionDelete();
 
+	void UpdateStateButton();
+
 private: // Controls
 	
 	QLineEdit*   mScriptPathEdit;

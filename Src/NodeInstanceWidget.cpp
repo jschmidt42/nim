@@ -79,6 +79,8 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	AddActionEditEnvVars();
 	AddActionLog();
 	AddActionDelete();
+
+	UpdateStateButton();
 	
 	//
 	// Layout
@@ -196,15 +198,8 @@ void NodeInstanceWidget::OnNodeStateToggled()
 
 void NodeInstanceWidget::OnNodeStateChanged(bool)
 {
-	// Update UI state
-	if ( mNodeInstance->IsRunning() )
-	{
-		mStateButton->setIcon( QIcon(":/NIM/Resources/stop-node.png") );
-	}
-	else
-	{
-		mStateButton->setIcon( QIcon(":/NIM/Resources/start-node.png") );
-	}
+	UpdateStateButton();
+
 }
 
 QAction* NodeInstanceWidget::AddAction(const QString& actionName, std::function<void()> actionCallback)
@@ -306,5 +301,18 @@ void NodeInstanceWidget::OnPortTextChanged(const QString& text)
 	if ( text.isEmpty() )
 	{
 		mNodeInstance->SetPort( 0 );
+	}
+}
+
+void NodeInstanceWidget::UpdateStateButton()
+{
+	// Update UI state
+	if ( mNodeInstance->IsRunning() )
+	{
+		mStateButton->setIcon( QIcon(":/NIM/Resources/stop-node.png") );
+	}
+	else
+	{
+		mStateButton->setIcon( QIcon(":/NIM/Resources/start-node.png") );
 	}
 }

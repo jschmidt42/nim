@@ -76,7 +76,6 @@ namespace QTUtils {
 			std::vector<uint> mMetaData;
 			std::vector<char> mMetaString;
 			QMetaObject mMetaObject;
-			std::vector<std::shared_ptr<std::string>> mFuncNamePool;
 		};
 
 		class STimeout : public QObject

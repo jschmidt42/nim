@@ -44,6 +44,7 @@ protected Q_SLOTS:
 	void OnNodeStateToggled();
 	void OnNodeStateChanged(bool);
 	void OnNodeDebugStateChanged(bool);
+	void OnPortTextChanged(const QString&);
 
 Q_SIGNALS:
 

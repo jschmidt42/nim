@@ -145,6 +145,9 @@ void NIM::ValidatePorts()
 	{
 		NodeInstance* nodeInstance = mNodeInstanceManager.GetInstance(i);
 
+		if ( nodeInstance->GetPort() == 0)
+			continue;
+
 		for (int j = i; j < mNodeInstanceManager.GetInstanceCount(); ++j)
 		{
 			if ( i != j )

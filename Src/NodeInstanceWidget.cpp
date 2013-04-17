@@ -93,6 +93,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	connect( mScriptPathEdit, SIGNAL(editingFinished()), this, SLOT(OnScriptPathEdited()) );
 	connect( mScriptPathEdit, SIGNAL(textChanged(const QString&)), this, SLOT(OnValidateScriptPath(const QString&)) );
 	connect( mPortEdit, SIGNAL(editingFinished()), this, SLOT(OnPortEdited()) );
+	connect( mPortEdit, SIGNAL(textChanged(const QString&)), this, SLOT(OnPortTextChanged(const QString&)) );
 	connect( mScriptBrowseButton, SIGNAL(clicked()), this, SLOT(OnBrowseScript()) );
 	connect( mStateButton, SIGNAL(clicked()), this, SLOT(OnNodeStateToggled()) );
 
@@ -162,12 +163,14 @@ void NodeInstanceWidget::SetPortWarning()
 {
 	QPalette bgPal = mPortEdit->palette();
 	bgPal.setColor( mPortEdit->backgroundRole(), QColor(244, 247, 153) );
+	mPortEdit->setStyleSheet( "background-color:rgb(244,247,153)" );
 	mPortEdit->setPalette( bgPal );
 }
 
 void NodeInstanceWidget::ClearPortWarning()
 {
 	mPortEdit->setPalette( QPalette() );
+	mPortEdit->setStyleSheet( "" );
 }
 
 void NodeInstanceWidget::OnNodeStateToggled()
@@ -178,6 +181,15 @@ void NodeInstanceWidget::OnNodeStateToggled()
 	}
 	else
 	{
+		if ( mNodeInstance->GetPort() == 0 )
+		{
+			NoticeMessageBox runningWarning( "noport", this );
+			runningWarning.SetTitle( tr("No Port") );
+			runningWarning.SetMessage( tr(
+				"You have specified no process PORT.\n") );
+			if ( runningWarning.exec() == QDialog::Rejected )
+				return;
+		}
 		mNodeInstance->Start();
 	}
 }
@@ -285,4 +297,14 @@ void NodeInstanceWidget::OnNodeDebugStateChanged(bool debug)
 NodeInstance* NodeInstanceWidget::Instance() const
 {
 	return mNodeInstance;
+}
+
+void NodeInstanceWidget::OnPortTextChanged(const QString& text)
+{
+	// NOTE: Real validation is done in OnPortEdited
+	//       Here we just set the port to 0 if the text if empty
+	if ( text.isEmpty() )
+	{
+		mNodeInstance->SetPort( 0 );
+	}
 }

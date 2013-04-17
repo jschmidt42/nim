@@ -16,10 +16,6 @@ NodeInstance::NodeInstance()
 	, mProcess( this )
 	, mDebug(false)
 {
-	// Add a few variables
-	mVars["INITSTART"] = "0";
-	mVars["HTTPROOT"] = "/";
-
 	Init();
 }
 

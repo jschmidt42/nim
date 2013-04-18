@@ -44,6 +44,7 @@ NodeInstance::~NodeInstance()
 void NodeInstance::Init()
 {
 	connect( &mProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(OnProcessStateChanged(QProcess::ProcessState)) );
+	connect( &mProcess, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(OnProcessFinished(int,QProcess::ExitStatus)) );
 }
 
 void NodeInstance::SetScriptPath(const QString& path)
@@ -96,7 +97,7 @@ void NodeInstance::Start()
 	if ( mDebug )
 	{
 		bool isPortValid = false;
-		int debugPort = mVars["DEBUGPORT"].toInt(&isPortValid);
+		int debugPort = GetEnvValue("DEBUGPORT").toInt(&isPortValid);
 		if ( isPortValid )
 			arguments << tr("--debug=%1").arg(debugPort);
 		else
@@ -121,7 +122,8 @@ void NodeInstance::Start()
 	mProcess.setEnvironment(env);
 
 	// Start the process
-	mProcess.start("node.exe", arguments);
+	const QString nodeExePath = GetEnvValue( "NODEPATH", "node.exe" );
+	mProcess.start(nodeExePath, arguments);
 }
 
 void NodeInstance::Stop()
@@ -191,4 +193,14 @@ QString NodeInstance::GetEnvValue(const QString& key, const QString& defaultValu
 	}
 
 	return defaultValue;
+}
+
+void NodeInstance::OnProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+	if ( exitStatus == QProcess::CrashExit )
+	{
+		mLog += tr("\n\nProcess crashed (%1)").arg(exitCode);
+	}
+	else
+		mLog += tr("\n\nProcess exited (%1)").arg(exitCode);
 }

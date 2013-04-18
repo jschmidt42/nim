@@ -39,6 +39,9 @@ public: // Serialization
 
 	/// Loads node settings and create node instances
 	void Load(const QSettings& settings);
+
+	/// Detect node process that are already running and host them.
+	void HostAlreadyRunningNodes();
 	
 private:
 

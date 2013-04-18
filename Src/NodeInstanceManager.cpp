@@ -114,3 +114,8 @@ void NodeInstanceManager::DeleteInstance(NodeInstance* nodeInstanceToDelete)
 		}
 	}
 }
+
+void NodeInstanceManager::HostAlreadyRunningNodes()
+{
+
+}

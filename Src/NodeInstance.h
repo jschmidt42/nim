@@ -51,6 +51,7 @@ public: // Interface
 protected Q_SLOTS:
 
 	void OnProcessStateChanged(QProcess::ProcessState state);
+	void OnProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
 Q_SIGNALS:
 

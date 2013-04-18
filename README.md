@@ -33,6 +33,7 @@ It is useful to have a single view on all your node instances that are running a
 				- INITSTART=1: start node when application starts
 				- HTTPROOT=a_root/sub_folder: path concatenated when opening the node in the browser (e.g. *http://localhost:9999/a_root/sub_folder*)
 				- DEBUGPORT=2600: used to override the 5858 default node debug port
+				- NODEPATH=C:/Programe Files/nodejs/node.exe: override which node.exe to use when launching that specific instance.
 			- ![vars](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/vars.png)
 		- **Log**: opens a log window of the running node process.
 			- - ![log](https://raw.github.com/jschmidt42/nim/master/Docs/Screenshots/log.png)

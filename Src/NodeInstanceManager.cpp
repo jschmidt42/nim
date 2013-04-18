@@ -10,9 +10,14 @@
 
 #include <QSettings>
 
+#ifdef WIN32
+#include "NtProcessInfo.h"
+#endif
+
 NodeInstanceManager::NodeInstanceManager()
 {
 	Load( QSettings() );
+	HostAlreadyRunningNodes();
 }
 
 
@@ -117,5 +122,44 @@ void NodeInstanceManager::DeleteInstance(NodeInstance* nodeInstanceToDelete)
 
 void NodeInstanceManager::HostAlreadyRunningNodes()
 {
+#ifdef WIN32
 
+	if(!sm_EnableTokenPrivilege(SE_DEBUG_NAME))
+		return;
+
+	unsigned long processes[1024], processArrayBytes, processCount;
+
+	if(!EnumProcesses(processes, sizeof(processes), &processArrayBytes))
+		return;
+
+	HMODULE dllModule = sm_LoadNTDLLFunctions();
+	if ( !dllModule )
+		return;
+
+	processCount = processArrayBytes / sizeof(processArrayBytes);
+
+	for(unsigned int i = 0; i < processCount; i++)
+	{
+		if(processes[i] == 0)
+			continue;
+
+		smPROCESSINFO processInfo;
+		sm_GetNtProcessInfo( processes[i], &processInfo);
+		
+		QString processName = QString::fromWCharArray(processInfo.szImgPath);
+		if ( processName.contains("node.exe") || processInfo.dwPID == 6328)
+		{
+			NodeInstance* foundInstance = CreateInstance();
+
+			// Get the process command line
+			//TODO: foundInstance->SetScriptPath( QString::fromWCharArray(processInfo.szCmdLine) );
+
+		}
+
+	}
+
+
+	sm_FreeNTDLLFunctions(dllModule);
+
+#endif
 }

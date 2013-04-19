@@ -7,17 +7,17 @@
 #include "NodeInstanceManager.h"
 
 #include "NodeInstanceSettings.h"
+#include "ProcessInfo.h"
 
 #include <QSettings>
 
-#ifdef WIN32
-#include "NtProcessInfo.h"
-#endif
 
 NodeInstanceManager::NodeInstanceManager()
 {
 	Load( QSettings() );
+#if 0
 	HostAlreadyRunningNodes();
+#endif // 0
 }
 
 
@@ -122,44 +122,44 @@ void NodeInstanceManager::DeleteInstance(NodeInstance* nodeInstanceToDelete)
 
 void NodeInstanceManager::HostAlreadyRunningNodes()
 {
-#ifdef WIN32
-
-	if(!sm_EnableTokenPrivilege(SE_DEBUG_NAME))
-		return;
-
-	unsigned long processes[1024], processArrayBytes, processCount;
-
-	if(!EnumProcesses(processes, sizeof(processes), &processArrayBytes))
-		return;
-
-	HMODULE dllModule = sm_LoadNTDLLFunctions();
-	if ( !dllModule )
-		return;
-
-	processCount = processArrayBytes / sizeof(processArrayBytes);
-
-	for(unsigned int i = 0; i < processCount; i++)
+	QList<ProcessInfo> nodeProcesses = GetProcessInfoList("SELECT * FROM Win32_Process WHERE Name = 'node.exe'");
+	
+	ProcessInfo pi;
+	foreach( pi, nodeProcesses )
 	{
-		if(processes[i] == 0)
+		// Get script name
+		// We suppose the script is the last argument
+		QString scriptName = pi.args.last();
+
+		// Check if we have everything needed
+		if ( scriptName.isEmpty() || pi.workingDir.isEmpty() )
 			continue;
 
-		smPROCESSINFO processInfo;
-		sm_GetNtProcessInfo( processes[i], &processInfo);
+		QFileInfo scriptPath( QDir(pi.workingDir), scriptName );
+
+		if ( !scriptPath.exists() )
+			continue;
 		
-		QString processName = QString::fromWCharArray(processInfo.szImgPath);
-		if ( processName.contains("node.exe") || processInfo.dwPID == 6328)
+		// Check if the process matches any available slots
+		bool hasSlot = false;
+		for (int i = 0; i < mInstances.count(); ++i)
 		{
-			NodeInstance* foundInstance = CreateInstance();
-
-			// Get the process command line
-			//TODO: foundInstance->SetScriptPath( QString::fromWCharArray(processInfo.szCmdLine) );
-
+			NodeInstance* nodeInstance = mInstances[i];
+			if ( QFileInfo(nodeInstance->GetScriptPath()).canonicalFilePath() == scriptPath.canonicalFilePath() )
+			{
+				// TODO: Reuse slot
+				hasSlot = true;
+			}
 		}
 
+		if ( !hasSlot )
+		{
+			// Create new slot
+			NodeInstance* newInstance = CreateInstance();
+			newInstance->SetScriptPath( scriptPath.absoluteFilePath() );
+			
+			// TODO: get port
+			// TODO: get process
+		}
 	}
-
-
-	sm_FreeNTDLLFunctions(dllModule);
-
-#endif
 }

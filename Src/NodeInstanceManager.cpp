@@ -162,7 +162,7 @@ void NodeInstanceManager::HostAlreadyRunningNodes()
 			newInstance->EnableExternalProcess( pi.pid );
 
 			// get port
-			newInstance->SetPortA( pi.env["PORT"].toInt() );
+			newInstance->SetPort( pi.env["PORT"].toInt() );
 		}
 	}
 }

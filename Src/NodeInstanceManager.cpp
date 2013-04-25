@@ -15,7 +15,7 @@
 NodeInstanceManager::NodeInstanceManager()
 {
 	Load( QSettings() );
-#if 0
+#ifdef _WIN64
 	HostAlreadyRunningNodes();
 #endif // 0
 }
@@ -134,6 +134,8 @@ void NodeInstanceManager::HostAlreadyRunningNodes()
 		// Check if we have everything needed
 		if ( scriptName.isEmpty() || pi.workingDir.isEmpty() )
 			continue;
+
+		qDebug() << scriptName << pi.workingDir;
 
 		QFileInfo scriptPath( QDir(pi.workingDir), scriptName );
 

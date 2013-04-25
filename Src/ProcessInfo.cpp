@@ -27,6 +27,55 @@ typedef NTSTATUS (NTAPI *_NtQueryInformationProcess)(
 	PDWORD ReturnLength
 	);
 
+	struct __RTL_DRIVE_LETTER_CURDIR {
+
+
+		USHORT                  Flags;
+		USHORT                  Length;
+		ULONG                   TimeStamp;
+		UNICODE_STRING          DosPath;
+
+
+
+
+	};
+
+	typedef struct ___RTL_USER_PROCESS_PARAMETERS {
+
+
+		ULONG                   MaximumLength;
+		ULONG                   Length;
+		ULONG                   Flags;
+		ULONG                   DebugFlags;
+		PVOID                   ConsoleHandle;
+		ULONG                   ConsoleFlags;
+		HANDLE                  StdInputHandle;
+		HANDLE                  StdOutputHandle;
+		HANDLE                  StdErrorHandle;
+		UNICODE_STRING          CurrentDirectoryPath;
+		HANDLE                  CurrentDirectoryHandle;
+		UNICODE_STRING          DllPath;
+		UNICODE_STRING          ImagePathName;
+		UNICODE_STRING          CommandLine;
+		PVOID                   Environment;
+		ULONG                   StartingPositionLeft;
+		ULONG                   StartingPositionTop;
+		ULONG                   Width;
+		ULONG                   Height;
+		ULONG                   CharWidth;
+		ULONG                   CharHeight;
+		ULONG                   ConsoleTextAttributes;
+		ULONG                   WindowFlags;
+		ULONG                   ShowWindowFlags;
+		UNICODE_STRING          WindowTitle;
+		UNICODE_STRING          DesktopName;
+		UNICODE_STRING          ShellInfo;
+		UNICODE_STRING          RuntimeData;
+		__RTL_DRIVE_LETTER_CURDIR DLCurrentDirectory[0x20];
+
+	} __RTL_USER_PROCESS_PARAMETERS;
+
+
 PVOID GetPebAddress(HANDLE ProcessHandle)
 {
 	_NtQueryInformationProcess NtQueryInformationProcess =
@@ -70,7 +119,7 @@ QString GetWorkingDir(quint32 pid)
 		return "";
 
 	/* read the CommandLine UNICODE_STRING structure */
-	if (!ReadProcessMemory(processHandle, (PCHAR)rtlUserProcParamsAddress + 0x24,
+	if (!ReadProcessMemory(processHandle, (PCHAR)rtlUserProcParamsAddress + offsetof(__RTL_USER_PROCESS_PARAMETERS, CurrentDirectoryPath),
 		&currentDir, sizeof(currentDir), NULL))
 	{
 		printf("Could not read CommandLine!\n");

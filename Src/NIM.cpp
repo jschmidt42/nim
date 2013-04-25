@@ -44,6 +44,8 @@ void NIM::CreateUI()
 {
 	mUI.setupUi(this);
 
+	mUI.ConfigButton->setVisible( false ); // TODO
+
 	mUI.Title->setText( tr(
 		"<html>"
 			"<div style='color:#FFF;font-size:200%'>N</font><font color='#AFD06C'>o</font>de <font color='#77982E'>js</font> Instance Manager</div>"

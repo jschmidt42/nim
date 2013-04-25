@@ -27,54 +27,109 @@ typedef NTSTATUS (NTAPI *_NtQueryInformationProcess)(
 	PDWORD ReturnLength
 	);
 
-	struct __RTL_DRIVE_LETTER_CURDIR {
+struct __RTL_DRIVE_LETTER_CURDIR {
+
+	USHORT                  Flags;
+	USHORT                  Length;
+	ULONG                   TimeStamp;
+	UNICODE_STRING          DosPath;
+
+};
+
+typedef struct ___RTL_USER_PROCESS_PARAMETERS {
 
 
-		USHORT                  Flags;
-		USHORT                  Length;
-		ULONG                   TimeStamp;
-		UNICODE_STRING          DosPath;
+	ULONG                   MaximumLength;
+	ULONG                   Length;
+	ULONG                   Flags;
+	ULONG                   DebugFlags;
+	PVOID                   ConsoleHandle;
+	ULONG                   ConsoleFlags;
+	HANDLE                  StdInputHandle;
+	HANDLE                  StdOutputHandle;
+	HANDLE                  StdErrorHandle;
+	UNICODE_STRING          CurrentDirectoryPath;
+	HANDLE                  CurrentDirectoryHandle;
+	UNICODE_STRING          DllPath;
+	UNICODE_STRING          ImagePathName;
+	UNICODE_STRING          CommandLine;
+	PVOID                   Environment;
+	ULONG                   StartingPositionLeft;
+	ULONG                   StartingPositionTop;
+	ULONG                   Width;
+	ULONG                   Height;
+	ULONG                   CharWidth;
+	ULONG                   CharHeight;
+	ULONG                   ConsoleTextAttributes;
+	ULONG                   WindowFlags;
+	ULONG                   ShowWindowFlags;
+	UNICODE_STRING          WindowTitle;
+	UNICODE_STRING          DesktopName;
+	UNICODE_STRING          ShellInfo;
+	UNICODE_STRING          RuntimeData;
+	__RTL_DRIVE_LETTER_CURDIR DLCurrentDirectory[0x20];
+
+} __RTL_USER_PROCESS_PARAMETERS;
+
+typedef struct __PEB {
+
+	BOOLEAN                 InheritedAddressSpace;
+	BOOLEAN                 ReadImageFileExecOptions;
+	BOOLEAN                 BeingDebugged;
+	BOOLEAN                 Spare;
+	HANDLE                  Mutant;
+	PVOID                   ImageBaseAddress;
+	PPEB_LDR_DATA           LoaderData;
+	PRTL_USER_PROCESS_PARAMETERS ProcessParameters;
+	PVOID                   SubSystemData;
+	PVOID                   ProcessHeap;
+	PVOID                   FastPebLock;
+	PVOID         FastPebLockRoutine;
+	PVOID         FastPebUnlockRoutine;
+	ULONG                   EnvironmentUpdateCount;
+	PVOID                  KernelCallbackTable;
+	PVOID                   EventLogSection;
+	PVOID                   EventLog;
+	PVOID         FreeList;
+	ULONG                   TlsExpansionCounter;
+	PVOID                   TlsBitmap;
+	ULONG                   TlsBitmapBits[0x2];
+	PVOID                   ReadOnlySharedMemoryBase;
+	PVOID                   ReadOnlySharedMemoryHeap;
+	PVOID                  ReadOnlyStaticServerData;
+	PVOID                   AnsiCodePageData;
+	PVOID                   OemCodePageData;
+	PVOID                   UnicodeCaseTableData;
+	ULONG                   NumberOfProcessors;
+	ULONG                   NtGlobalFlag;
+	BYTE                    Spare2[0x4];
+	LARGE_INTEGER           CriticalSectionTimeout;
+	ULONG                   HeapSegmentReserve;
+	ULONG                   HeapSegmentCommit;
+	ULONG                   HeapDeCommitTotalFreeThreshold;
+	ULONG                   HeapDeCommitFreeBlockThreshold;
+	ULONG                   NumberOfHeaps;
+	ULONG                   MaximumNumberOfHeaps;
+	PVOID                  *ProcessHeaps;
+	PVOID                   GdiSharedHandleTable;
+	PVOID                   ProcessStarterHelper;
+	PVOID                   GdiDCAttributeList;
+	PVOID                   LoaderLock;
+	ULONG                   OSMajorVersion;
+	ULONG                   OSMinorVersion;
+	ULONG                   OSBuildNumber;
+	ULONG                   OSPlatformId;
+	ULONG                   ImageSubSystem;
+	ULONG                   ImageSubSystemMajorVersion;
+	ULONG                   ImageSubSystemMinorVersion;
+	ULONG                   GdiHandleBuffer[0x22];
+	ULONG                   PostProcessInitRoutine;
+	ULONG                   TlsExpansionBitmap;
+	BYTE                    TlsExpansionBitmapBits[0x80];
+	ULONG                   SessionId;
 
 
-
-
-	};
-
-	typedef struct ___RTL_USER_PROCESS_PARAMETERS {
-
-
-		ULONG                   MaximumLength;
-		ULONG                   Length;
-		ULONG                   Flags;
-		ULONG                   DebugFlags;
-		PVOID                   ConsoleHandle;
-		ULONG                   ConsoleFlags;
-		HANDLE                  StdInputHandle;
-		HANDLE                  StdOutputHandle;
-		HANDLE                  StdErrorHandle;
-		UNICODE_STRING          CurrentDirectoryPath;
-		HANDLE                  CurrentDirectoryHandle;
-		UNICODE_STRING          DllPath;
-		UNICODE_STRING          ImagePathName;
-		UNICODE_STRING          CommandLine;
-		PVOID                   Environment;
-		ULONG                   StartingPositionLeft;
-		ULONG                   StartingPositionTop;
-		ULONG                   Width;
-		ULONG                   Height;
-		ULONG                   CharWidth;
-		ULONG                   CharHeight;
-		ULONG                   ConsoleTextAttributes;
-		ULONG                   WindowFlags;
-		ULONG                   ShowWindowFlags;
-		UNICODE_STRING          WindowTitle;
-		UNICODE_STRING          DesktopName;
-		UNICODE_STRING          ShellInfo;
-		UNICODE_STRING          RuntimeData;
-		__RTL_DRIVE_LETTER_CURDIR DLCurrentDirectory[0x20];
-
-	} __RTL_USER_PROCESS_PARAMETERS;
-
+} ___PEB;
 
 PVOID GetPebAddress(HANDLE ProcessHandle)
 {
@@ -88,7 +143,24 @@ PVOID GetPebAddress(HANDLE ProcessHandle)
 	return pbi.PebBaseAddress;
 }
 
-QString GetWorkingDir(quint32 pid)
+BOOL HasReadAccess( HANDLE hProcess, void* pAddress, int& nSize )
+{
+	MEMORY_BASIC_INFORMATION memInfo;
+	{
+		VirtualQueryEx( hProcess, pAddress,&memInfo,sizeof(memInfo));
+		if( PAGE_NOACCESS == memInfo.Protect ||
+			PAGE_EXECUTE == memInfo.Protect )
+		{
+			nSize = 0;
+			return FALSE;
+		}
+		nSize = memInfo.RegionSize;
+		return TRUE;
+	}
+	return FALSE;
+} 
+
+bool ReadAdditionalProcessInfo(quint32 pid, ProcessInfo& pi)
 {
 	HANDLE processHandle;
 	PVOID pebAddress;
@@ -102,7 +174,7 @@ QString GetWorkingDir(quint32 pid)
 		FALSE, pid)) == 0)
 	{
 		printf("Could not open process!\n");
-		return "";
+		return false;
 	}
 
 	pebAddress = GetPebAddress(processHandle);
@@ -112,18 +184,18 @@ QString GetWorkingDir(quint32 pid)
 		&rtlUserProcParamsAddress, sizeof(PVOID), NULL))
 	{
 		printf("Could not read the address of ProcessParameters!\n");
-		return "";
+		return false;
 	}
 
 	if ( rtlUserProcParamsAddress == 0 ) 
-		return "";
+		return false;
 
 	/* read the CommandLine UNICODE_STRING structure */
 	if (!ReadProcessMemory(processHandle, (PCHAR)rtlUserProcParamsAddress + offsetof(__RTL_USER_PROCESS_PARAMETERS, CurrentDirectoryPath),
 		&currentDir, sizeof(currentDir), NULL))
 	{
 		printf("Could not read CommandLine!\n");
-		return "";
+		return false;
 	}
 
 	/* allocate memory to hold the command line */
@@ -135,18 +207,64 @@ QString GetWorkingDir(quint32 pid)
 		currentDirContents, currentDir.Length, NULL))
 	{
 		printf("Could not read the command line string!\n");
-		return "";
+		return false;
 	}
 
 	/* print it */
 	/* the length specifier is in characters, but commandLine.Length is in bytes */
 	/* a WCHAR is 2 bytes */
-	QString currentDirQStr = QString::fromWCharArray(currentDirContents);
+	pi.workingDir = QString::fromWCharArray(currentDirContents);
 
-	CloseHandle(processHandle);
 	free(currentDirContents);
 
-	return currentDirQStr;
+	/************************************************************************/
+	/* ENV                                                                  */
+	/************************************************************************/
+	
+	PVOID pEnv = 0;
+	WCHAR* envContents = 0;
+
+	int envSize = 0;
+	PCHAR pAddrEnvStrBlock = (PCHAR)rtlUserProcParamsAddress + offsetof(__RTL_USER_PROCESS_PARAMETERS, Environment);
+	if ( HasReadAccess( processHandle, pAddrEnvStrBlock, envSize ) )
+	{
+		if (!ReadProcessMemory(processHandle, pAddrEnvStrBlock, &pEnv, sizeof(pEnv), NULL))
+		{
+			printf("Could not read env.!\n");
+			return false;
+		}
+
+		/* allocate memory to hold the command line */
+		envContents = (WCHAR *)malloc(envSize+2);
+		ZeroMemory(envContents, envSize+2);
+
+		/* read the current directory */
+		if (!ReadProcessMemory(processHandle, pEnv, envContents, envSize, NULL))
+		{
+			free(envContents);
+			return false;
+		}
+		
+		WCHAR* envVar = envContents;
+		while ( (PCHAR)envVar < ((PCHAR)envContents + envSize) )
+		{
+			QString envStr = QString::fromWCharArray(envVar);
+
+			QStringList tokens = envStr.split('=');
+			if ( tokens.length() == 2 )
+			{
+				pi.env[ tokens[0] ] = tokens[1];
+			}
+
+			envVar += envStr.length() + 1;
+		}
+
+		free(envContents);
+	}
+
+	CloseHandle(processHandle);
+
+	return true;
 }
 
 QList<ProcessInfo> GetProcessInfoList(const QString& query)
@@ -322,7 +440,7 @@ QList<ProcessInfo> GetProcessInfoList(const QString& query)
 		pi.workingDir = QString::fromWCharArray(vtProp.bstrVal);
 		VariantClear(&vtProp);
 
-		pi.workingDir = GetWorkingDir( pi.pid );
+		ReadAdditionalProcessInfo( pi.pid, pi );
 
 		// Split the command line into arguments
 		LPWSTR* szArglist = nullptr;
@@ -346,7 +464,7 @@ QList<ProcessInfo> GetProcessInfoList(const QString& query)
 
 		// Free memory allocated for CommandLineToArgvW arguments.
 		LocalFree(szArglist);
-		
+
 		pclsObj->Release();
 
 		infos.push_back( pi );

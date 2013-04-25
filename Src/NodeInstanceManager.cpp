@@ -135,8 +135,6 @@ void NodeInstanceManager::HostAlreadyRunningNodes()
 		if ( scriptName.isEmpty() || pi.workingDir.isEmpty() )
 			continue;
 
-		qDebug() << scriptName << pi.workingDir;
-
 		QFileInfo scriptPath( QDir(pi.workingDir), scriptName );
 
 		if ( !scriptPath.exists() )
@@ -151,6 +149,8 @@ void NodeInstanceManager::HostAlreadyRunningNodes()
 			{
 				// TODO: Reuse slot
 				hasSlot = true;
+				nodeInstance->EnableExternalProcess( pi.pid );
+				break;
 			}
 		}
 
@@ -159,9 +159,10 @@ void NodeInstanceManager::HostAlreadyRunningNodes()
 			// Create new slot
 			NodeInstance* newInstance = CreateInstance();
 			newInstance->SetScriptPath( scriptPath.absoluteFilePath() );
-			
-			// TODO: get port
-			// TODO: get process
+			newInstance->EnableExternalProcess( pi.pid );
+
+			// get port
+			newInstance->SetPortA( pi.env["PORT"].toInt() );
 		}
 	}
 }

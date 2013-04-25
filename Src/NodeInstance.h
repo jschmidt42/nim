@@ -36,7 +36,7 @@ public: // Interface
 
 	void Init();
 	void Start();
-	void Stop();
+	void Stop(bool onExit = false);
 	bool IsRunning() const;
 	QString ReadLog();
 	QString GetLog() const;
@@ -47,6 +47,8 @@ public: // Interface
 	Vars& GetVars() { return mVars; }
 	const Vars& GetVars() const { return mVars; }
 	QString GetEnvValue(const QString& key, const QString& defaultValue = "") const;
+
+	void EnableExternalProcess(int pid);
 
 protected Q_SLOTS:
 
@@ -59,7 +61,7 @@ Q_SIGNALS:
 	void PortChanged(int port);
 	void NodeStateChanged(bool);
 	void DebugStateChanged(bool);
-
+	
 private:
 
 	QString  mScriptPath;
@@ -69,5 +71,7 @@ private:
 	QString  mLog;
 
 	QProcess mProcess;
+	bool     mIsExternalProcess;
+	int      mExternalProcessId;
 };
 

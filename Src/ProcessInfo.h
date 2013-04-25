@@ -14,6 +14,7 @@ struct ProcessInfo
 	QString workingDir;
 	QString commandLine;
 	QStringList args;
+	QMap<QString, QString> env;
 };
 
 QList<ProcessInfo> GetProcessInfoList(const QString& query);

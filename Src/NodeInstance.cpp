@@ -15,6 +15,8 @@ NodeInstance::NodeInstance()
 	, mPort(0)
 	, mDebug(false)
 	, mProcess( this )
+	, mIsExternalProcess(false)
+	, mExternalProcessId(0)
 {
 	Init();
 }
@@ -24,6 +26,8 @@ NodeInstance::NodeInstance(const NodeInstanceSettings& settings)
 	, mPort(settings.port)
 	, mVars(settings.vars)
 	, mDebug(settings.debug)
+	, mIsExternalProcess(false)
+	, mExternalProcessId(0)
 {
 	Init();
 
@@ -38,7 +42,7 @@ NodeInstance::NodeInstance(const NodeInstanceSettings& settings)
 NodeInstance::~NodeInstance()
 {
 	mProcess.disconnect( this );
-	Stop();
+	Stop( true );
 }
 
 void NodeInstance::Init()
@@ -126,14 +130,31 @@ void NodeInstance::Start()
 	mProcess.start(nodeExePath, arguments);
 }
 
-void NodeInstance::Stop()
+void NodeInstance::Stop(bool onExit /*= false*/)
 {
+	if ( !onExit && mIsExternalProcess )
+	{
+#ifdef WIN32
+		// Kill the external process
+		HANDLE processHandle = ::OpenProcess( PROCESS_TERMINATE, FALSE, mExternalProcessId );
+		if ( processHandle )
+		{
+			::TerminateProcess( processHandle, 0 );
+			::CloseHandle( processHandle );
+		}
+#endif
+
+		mIsExternalProcess = false;
+		mExternalProcessId = 0;
+
+		emit NodeStateChanged( IsRunning() );
+	}
 	mProcess.kill();
 }
 
 bool NodeInstance::IsRunning() const
 {
-	return mProcess.state() != QProcess::NotRunning;
+	return mIsExternalProcess || (mProcess.state() != QProcess::NotRunning);
 }
 
 void NodeInstance::OnProcessStateChanged(QProcess::ProcessState)
@@ -203,4 +224,10 @@ void NodeInstance::OnProcessFinished(int exitCode, QProcess::ExitStatus exitStat
 	}
 	else
 		mLog += tr("\n\nProcess exited (%1)").arg(exitCode);
+}
+
+void NodeInstance::EnableExternalProcess(int pid)
+{
+	mIsExternalProcess = true;
+	mExternalProcessId = pid;
 }

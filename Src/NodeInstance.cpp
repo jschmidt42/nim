@@ -125,6 +125,8 @@ void NodeInstance::Start()
 
 	mProcess.setEnvironment(env);
 
+	mProcess.setProcessChannelMode(QProcess::MergedChannels);
+
 	// Start the process
 	const QString nodeExePath = GetEnvValue( "NODEPATH", "node.exe" );
 	mProcess.start(nodeExePath, arguments);
@@ -180,6 +182,10 @@ QString NodeInstance::ReadLog()
 {
 	QString log;
 	char lineBuf[1024];
+
+	log += mTempLog;
+	mLog += mTempLog;
+
 	qint64 lineLength = mProcess.readLine(lineBuf, sizeof(lineBuf));
 	while (lineLength > 0) 
 	{
@@ -196,6 +202,7 @@ QString NodeInstance::ReadLog()
 
 		lineLength = mProcess.readLine(lineBuf, sizeof(lineBuf));
 	}
+	mTempLog.clear();
 	return log;
 }
 
@@ -220,10 +227,12 @@ void NodeInstance::OnProcessFinished(int exitCode, QProcess::ExitStatus exitStat
 {
 	if ( exitStatus == QProcess::CrashExit )
 	{
-		mLog += tr("\n\nProcess crashed (%1)").arg(exitCode);
+		mTempLog += tr("\n\nProcess crashed (%1)").arg(exitCode);
 	}
 	else
-		mLog += tr("\n\nProcess exited (%1)").arg(exitCode);
+	{
+		mTempLog += tr("\n\nProcess exited (%1)").arg(exitCode);
+	}
 }
 
 void NodeInstance::EnableExternalProcess(int pid)

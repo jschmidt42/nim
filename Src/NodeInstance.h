@@ -69,6 +69,7 @@ private:
 	Vars     mVars;
 	bool     mDebug;
 	QString  mLog;
+	QString  mTempLog;
 
 	QProcess mProcess;
 	bool     mIsExternalProcess;

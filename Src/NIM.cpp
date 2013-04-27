@@ -29,14 +29,13 @@ NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	PopulateUI();
 	SetConnections();
 
-	resize( QSettings().value( "width", width() ).toInt(), QSettings().value( "height", height() ).toInt() );
+	RestoreWindowSettings();
 }
 
 ///////////////////////////////////////////////////////////////////////
 NIM::~NIM()
 {
-	QSettings().setValue( "width", width() );
-	QSettings().setValue( "height", height() );
+	SaveWindowSettings();
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -173,7 +172,7 @@ void NIM::CreateTrayIcon()
 {
 	QMenu* menu = new QMenu();
 	menu->addAction( QIcon(":/NIM/shutdown-icon.png"), "Open", _Q, _Q->Call( [this](){
-		this->showNormal();
+		showNormal();
 	} ) );
 	menu->addSeparator();
 	menu->addAction( QIcon(":/NIM/shutdown-icon.png"), "Exit", this, SLOT(accept()) );
@@ -185,7 +184,16 @@ void NIM::OnTrayActivated(QSystemTrayIcon::ActivationReason reason)
 {
 	if ( reason == QSystemTrayIcon::Trigger )
 	{
-		showNormal();
+		if ( isVisible() )
+		{
+			setWindowState( Qt::WindowMinimized );
+		}
+		else
+		{
+			RestoreWindowSettings();
+			setVisible( true );
+			setWindowState( Qt::WindowActive );
+		}
 	}
 }
 
@@ -215,12 +223,16 @@ void NIM::OnCountActiveNodes()
 
 void NIM::changeEvent( QEvent* event )
 {
+	QDialog::changeEvent( event );
+
 	if( event->type() == QEvent::WindowStateChange )
 	{
 		if( isMinimized() )
 		{
+			SaveWindowSettings();
+
 			QTUtils::SetTimeout( [this]() {
-				this->hide();
+				setVisible( false );
 			}, 300 );
 		}
 	}
@@ -229,4 +241,36 @@ void NIM::changeEvent( QEvent* event )
 void NIM::OnDeleteNodeInstance(NodeInstance* nodeInstance)
 {
 	mNodeInstanceManager.DeleteInstance( nodeInstance );	
+}
+
+void NIM::resizeEvent(QResizeEvent* event)
+{
+	QDialog::resizeEvent( event );
+}
+
+void NIM::RestoreWindowSettings()
+{
+	QSettings settings;
+
+	bool ok;
+	int x = settings.value("posx").toInt(&ok);
+	if ( !ok )
+		return;
+	int y = settings.value("posy").toInt(&ok);
+	if ( !ok )
+		return;
+
+	setGeometry( 
+		x, y,
+		settings.value("width", width() ).toInt(), 
+		settings.value( "height", height() ).toInt() );
+}
+
+void NIM::SaveWindowSettings()
+{
+	QRect fr = geometry();
+	QSettings().setValue( "width", fr.width() );
+	QSettings().setValue( "height", fr.height() );
+	QSettings().setValue( "posx", fr.x() );
+	QSettings().setValue( "posy", fr.y() );
 }

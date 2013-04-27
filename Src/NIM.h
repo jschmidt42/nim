@@ -34,6 +34,7 @@ protected:
 
 	virtual void closeEvent(QCloseEvent* event) override;
 	virtual void changeEvent(QEvent* event) override;
+	virtual void resizeEvent(QResizeEvent* event) override;
 
 private: // Implementation
 
@@ -44,6 +45,8 @@ private: // Implementation
 	void InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance);
 	void ValidatePorts();
 	void CreateTrayIcon();
+	void RestoreWindowSettings();
+	void SaveWindowSettings();
 
 private: // Controls
 

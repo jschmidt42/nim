@@ -17,12 +17,12 @@
 ///////////////////////////////////////////////////////////////////////
 NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	: QDialog(parent, flags | Qt::WindowMinimizeButtonHint)
-	, mTrayIcon( QIcon(":/NIM/Resources/main-icon.png"), this )
+	, mTrayIcon( QIcon(":/NIM/main-icon.png"), this )
 	, mInstanceLayout(nullptr)
 {
 	QTUtils::Init();
 
-	setStyleSheet( QTUtils::ReadStyleSheet(":/NIM/Resources/theme.css") );
+	setStyleSheet( QTUtils::ReadStyleSheet(":/NIM/theme.css") );
 
 	CreateTrayIcon();
 	CreateUI();
@@ -55,7 +55,7 @@ void NIM::CreateUI()
 	mInstanceLayout->setSpacing(2);
 	mInstanceLayout->setMargin(0);
 
-	mAddInstanceButton = new QPushButton( QIcon(":/NIM/Resources/add-node.png"), "Add");
+	mAddInstanceButton = new QPushButton( QIcon(":/NIM/add-node.png"), "Add");
 	mInstanceLayout->addWidget( mAddInstanceButton, 0, Qt::AlignRight );
 	mInstanceLayout->addStretch(1);
 
@@ -172,11 +172,11 @@ void NIM::ValidatePorts()
 void NIM::CreateTrayIcon()
 {
 	QMenu* menu = new QMenu();
-	menu->addAction( QIcon(":/NIM/Resources/shutdown-icon.png"), "Open", _Q, _Q->Call( [this](){
+	menu->addAction( QIcon(":/NIM/shutdown-icon.png"), "Open", _Q, _Q->Call( [this](){
 		this->showNormal();
 	} ) );
 	menu->addSeparator();
-	menu->addAction( QIcon(":/NIM/Resources/shutdown-icon.png"), "Exit", this, SLOT(accept()) );
+	menu->addAction( QIcon(":/NIM/shutdown-icon.png"), "Exit", this, SLOT(accept()) );
 	mTrayIcon.setContextMenu( menu );
 	mTrayIcon.show();
 }
@@ -200,7 +200,7 @@ void NIM::OnCountActiveNodes()
 			runningNodes++;
 	}
 
-	QPixmap trayIconPixmap( ":/NIM/Resources/main-icon.png" );
+	QPixmap trayIconPixmap( ":/NIM/main-icon.png" );
 	QPainter trayIconPainter( &trayIconPixmap );
 	QFont ft = trayIconPainter.font();
 	ft.setPointSize( 16 );

@@ -53,7 +53,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	//
 	// Running state
 	//
-	mStateButton = new QPushButton( QIcon(":/NIM/Resources/start-node.png"), "" );
+	mStateButton = new QPushButton( QIcon(":/NIM/start-node.png"), "" );
 	mStateButton->setFlat(true);
 	mStateButton->setFixedWidth( 20 );
 
@@ -61,7 +61,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	// Configuration dropdown
 	//
 	mConfigButton = new QToolButton();
-	mConfigButton->setIcon( QIcon(":/NIM/Resources/more-options.png") );
+	mConfigButton->setIcon( QIcon(":/NIM/more-options.png") );
 	mConfigButton->setFixedWidth( 20 );
 	mConfigButton->setAutoRaise( true );
 	mConfigButton->setPopupMode( QToolButton::InstantPopup );
@@ -310,10 +310,10 @@ void NodeInstanceWidget::UpdateStateButton()
 	// Update UI state
 	if ( mNodeInstance->IsRunning() )
 	{
-		mStateButton->setIcon( QIcon(":/NIM/Resources/stop-node.png") );
+		mStateButton->setIcon( QIcon(":/NIM/stop-node.png") );
 	}
 	else
 	{
-		mStateButton->setIcon( QIcon(":/NIM/Resources/start-node.png") );
+		mStateButton->setIcon( QIcon(":/NIM/start-node.png") );
 	}
 }

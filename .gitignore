@@ -17,12 +17,13 @@ setup.exe
 *.opensdf
 *.sdf
 *.user
-/ipch/
+ipch/
 /*.suo
 /*.APS
 /*.vcxproj.vspscc
 /Win32/
 /Build.Output/
+/Output/
 /moc_*
 /nim.app/
 /ui_*

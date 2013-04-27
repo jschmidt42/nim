@@ -23,8 +23,8 @@
    <string>NIM</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../nim.qrc">
-    <normaloff>:/NIM/Resources/main-icon.png</normaloff>:/NIM/Resources/main-icon.png</iconset>
+   <iconset resource="../../Resources/nim.qrc">
+    <normaloff>:/NIM/main-icon.png</normaloff>:/NIM/main-icon.png</iconset>
   </property>
   <property name="whatsThis">
    <string notr="true"/>
@@ -100,8 +100,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../nim.qrc">
-         <normaloff>:/NIM/Resources/configuration-icon.png</normaloff>:/NIM/Resources/configuration-icon.png</iconset>
+        <iconset resource="../../Resources/nim.qrc">
+         <normaloff>:/NIM/configuration-icon.png</normaloff>:/NIM/configuration-icon.png</iconset>
        </property>
       </widget>
      </item>
@@ -124,8 +124,8 @@
         <string>Exit</string>
        </property>
        <property name="icon">
-        <iconset resource="../nim.qrc">
-         <normaloff>:/NIM/Resources/shutdown-icon.png</normaloff>:/NIM/Resources/shutdown-icon.png</iconset>
+        <iconset resource="../../Resources/nim.qrc">
+         <normaloff>:/NIM/shutdown-icon.png</normaloff>:/NIM/shutdown-icon.png</iconset>
        </property>
       </widget>
      </item>
@@ -140,7 +140,7 @@
   <tabstop>ExitButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../nim.qrc"/>
+  <include location="../../Resources/nim.qrc"/>
  </resources>
  <connections/>
 </ui>

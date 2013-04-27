@@ -118,7 +118,7 @@ void NIM::AddNewNodeInstanceWidget()
 	InsertNodeInstanceWidget( mNodeInstanceManager.GetInstanceCount()-1, newInstance );
 }
 
-void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
+NodeInstanceWidget* NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
 {
 	NodeInstanceWidget* nodeInstanceWidget = new NodeInstanceWidget( nodeInstance );
 	mInstanceLayout->insertWidget( idx, nodeInstanceWidget );
@@ -126,6 +126,8 @@ void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
 	connect( nodeInstanceWidget, SIGNAL(PortEdited(int)), this, SLOT(OnValidatePorts()) );
 	connect( nodeInstanceWidget, SIGNAL(DeleteNodeInstance(NodeInstance*)), this, SLOT(OnDeleteNodeInstance(NodeInstance*)) );
 	connect( nodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnGenerateTrayIcon()) );
+	
+	return nodeInstanceWidget;
 }
 
 void NIM::OnValidatePorts()

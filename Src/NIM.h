@@ -14,6 +14,8 @@
 #include <QtGui/QDialog>
 #include <QSystemTrayIcon>
 
+class NodeInstanceWidget;
+
 class NIM : public QDialog
 {
 	Q_OBJECT;
@@ -38,16 +40,16 @@ protected:
 
 private: // Implementation
 
-	void CreateUI();
-	void PopulateUI();
-	void SetConnections();
-	void AddNewNodeInstanceWidget();
-	void InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance);
-	void ValidatePorts();
-	void CreateTrayIcon();
-	void RestoreWindowSettings();
-	void SaveWindowSettings();
-	void UpdateTrayIconState();
+	void                CreateUI();
+	void                PopulateUI();
+	void                SetConnections();
+	void                AddNewNodeInstanceWidget();
+	NodeInstanceWidget* InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance);
+	void                ValidatePorts();
+	void                CreateTrayIcon();
+	void                RestoreWindowSettings();
+	void                SaveWindowSettings();
+	void                UpdateTrayIconState();
 
 private: // Controls
 

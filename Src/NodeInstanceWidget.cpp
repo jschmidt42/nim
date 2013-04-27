@@ -40,6 +40,11 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	mScriptBrowseButton->setFixedSize( 20, 20 );
 	mScriptBrowseButton->move(100, 0);
 
+// 	QCheckBox* test = new QCheckBox(mScriptPathEdit);
+// 	test->setCursor( Qt::ArrowCursor );
+// 	test->setFixedSize( 11, 11 );
+// 	test->move(4, 5);
+
 	//
 	// Port
 	//
@@ -86,6 +91,7 @@ NodeInstanceWidget::NodeInstanceWidget(NodeInstance* nodeInstance, QWidget *pare
 	// Layout
 	//
 	mainLayout->addWidget( mStateButton );
+	//mainLayout->addWidget( new QCheckBox() );
 	mainLayout->addWidget( mScriptPathEdit );
 	mainLayout->addWidget( mPortEdit );
 	

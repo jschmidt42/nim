@@ -146,7 +146,7 @@
     <CustomBuild Include="..\..\Src\NodeInstanceWidget.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\Resources\nim.qrc">
+    <CustomBuild Include="..\..\Res\nim.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\Src\EnvVarEditor.h">
@@ -171,43 +171,43 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\main-icon.png">
+    <None Include="..\..\Res\main-icon.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\configuration-icon.png">
+    <None Include="..\..\Res\configuration-icon.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\shutdown-icon.png">
+    <None Include="..\..\Res\shutdown-icon.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\add-node.png">
+    <None Include="..\..\Res\add-node.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\delete-node.png">
+    <None Include="..\..\Res\delete-node.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\start-node.png">
+    <None Include="..\..\Res\start-node.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\stop-node.png">
+    <None Include="..\..\Res\stop-node.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\more-options.png">
+    <None Include="..\..\Res\more-options.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\NIM.ico">
+    <None Include="..\..\Res\NIM.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\checkbox.png">
+    <None Include="..\..\Res\checkbox.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\down_arrow.png">
+    <None Include="..\..\Res\down_arrow.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\handle.png">
+    <None Include="..\..\Res\handle.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\..\Resources\theme.css">
+    <None Include="..\..\Res\theme.css">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

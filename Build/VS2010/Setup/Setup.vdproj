@@ -212,7 +212,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B234441FB3D54C90A61E6E964F9E21DC"
             {
-            "SourcePath" = "8:..\\..\\..\\Resources\\NIM.ico"
+            "SourcePath" = "8:..\\..\\..\\Res\\NIM.ico"
             "TargetName" = "8:NIM.ico"
             "Tag" = "8:"
             "Folder" = "8:_298F3B618CD6445897A52840530D3C3F"

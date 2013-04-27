@@ -27,7 +27,7 @@ protected Q_SLOTS:
 	void OnAddInstance();
 	void OnValidatePorts();
 	void OnTrayActivated(QSystemTrayIcon::ActivationReason reason);
-	void OnCountActiveNodes();
+	void OnGenerateTrayIcon();
 	void OnDeleteNodeInstance(NodeInstance*);
 
 protected:
@@ -47,6 +47,7 @@ private: // Implementation
 	void CreateTrayIcon();
 	void RestoreWindowSettings();
 	void SaveWindowSettings();
+	void UpdateTrayIconState();
 
 private: // Controls
 

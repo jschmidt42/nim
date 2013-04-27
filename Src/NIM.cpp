@@ -28,6 +28,7 @@ NIM::NIM(QWidget *parent, Qt::WFlags flags)
 	CreateUI();
 	PopulateUI();
 	SetConnections();
+	UpdateTrayIconState();
 
 	RestoreWindowSettings();
 }
@@ -124,7 +125,7 @@ void NIM::InsertNodeInstanceWidget(int idx, NodeInstance* nodeInstance)
 
 	connect( nodeInstanceWidget, SIGNAL(PortEdited(int)), this, SLOT(OnValidatePorts()) );
 	connect( nodeInstanceWidget, SIGNAL(DeleteNodeInstance(NodeInstance*)), this, SLOT(OnDeleteNodeInstance(NodeInstance*)) );
-	connect( nodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnCountActiveNodes()) );
+	connect( nodeInstance, SIGNAL(NodeStateChanged(bool)), this, SLOT(OnGenerateTrayIcon()) );
 }
 
 void NIM::OnValidatePorts()
@@ -197,28 +198,9 @@ void NIM::OnTrayActivated(QSystemTrayIcon::ActivationReason reason)
 	}
 }
 
-void NIM::OnCountActiveNodes()
+void NIM::OnGenerateTrayIcon()
 {
-#if 0
-	int runningNodes = 0;
-	for (int i = 0; i < mInstanceManager.GetInstanceCount(); ++i)
-	{
-		NodeInstance* nodeInstance = mInstanceManager.GetInstance(i);
-		if ( nodeInstance->IsRunning() )
-			runningNodes++;
-	}
-
-	QPixmap trayIconPixmap( ":/NIM/main-icon.png" );
-	QPainter trayIconPainter( &trayIconPixmap );
-	QFont ft = trayIconPainter.font();
-	ft.setPointSize( 16 );
-	ft.setBold(true);
-	trayIconPainter.setPen( Qt::white );
-	trayIconPainter.setFont( ft );
-	trayIconPainter.drawText( trayIconPixmap.rect(), Qt::AlignBottom | Qt::AlignRight, QString("%1").arg(runningNodes) );
-	trayIconPainter.end();
-	mTrayIcon.setIcon( QIcon(trayIconPixmap) );
-#endif
+	UpdateTrayIconState();
 }
 
 void NIM::changeEvent( QEvent* event )
@@ -273,4 +255,38 @@ void NIM::SaveWindowSettings()
 	QSettings().setValue( "height", fr.height() );
 	QSettings().setValue( "posx", fr.x() );
 	QSettings().setValue( "posy", fr.y() );
+}
+
+void NIM::UpdateTrayIconState()
+{
+	bool hasRunningNodes = false;
+	for (int i = 0; i < mNodeInstanceManager.GetInstanceCount(); ++i)
+	{
+		NodeInstance* nodeInstance = mNodeInstanceManager.GetInstance(i);
+		if ( nodeInstance->IsRunning() )
+		{
+			hasRunningNodes = true;
+			break;
+		}
+	}
+
+	if ( hasRunningNodes )
+	{
+		QPixmap trayIconPixmap(16, 16);
+		trayIconPixmap.fill(Qt::transparent);
+
+		QPainter trayIconPainter( &trayIconPixmap );
+		QIcon(":/NIM/main-icon.png").paint(&trayIconPainter, 0, 0, 16, 16);
+
+		trayIconPainter.setPen( QPen(Qt::green, 1.5f) );
+		trayIconPainter.setBrush( Qt::NoBrush );
+		trayIconPainter.drawRoundedRect( QRect(0,0,15,15), 3, 3 );
+		trayIconPainter.end();
+
+		mTrayIcon.setIcon( trayIconPixmap );
+	}
+	else
+	{
+		mTrayIcon.setIcon( QIcon(":/NIM/main-icon.png") );
+	}
 }

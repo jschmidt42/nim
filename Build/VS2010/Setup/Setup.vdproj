@@ -15,19 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_31D4474033EB5AC424FFD05BB1261FF3"
-        "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3EDAF4B825A447A7A35A704426AE184D"
-        "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_57EAE3A30D6713F5EF8A1589D4AD76A8"
+        "MsmKey" = "8:_8F1F65B75447EDDFE1E49F63E9C475EB"
         "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,8 +33,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B0E313B7F4304539BC298B0FC0E332C9"
+        "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B234441FB3D54C90A61E6E964F9E21DC"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B2EDA6EA858B8FACEA616C4246B85900"
+        "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -150,27 +150,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_31D4474033EB5AC424FFD05BB1261FF3"
-            {
-            "SourcePath" = "8:QtGui4.dll"
-            "TargetName" = "8:QtGui4.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_298F3B618CD6445897A52840530D3C3F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_57EAE3A30D6713F5EF8A1589D4AD76A8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F1F65B75447EDDFE1E49F63E9C475EB"
             {
             "SourcePath" = "8:QtCore4.dll"
             "TargetName" = "8:QtCore4.dll"
@@ -230,6 +210,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2EDA6EA858B8FACEA616C4246B85900"
+            {
+            "SourcePath" = "8:QtGui4.dll"
+            "TargetName" = "8:QtGui4.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_298F3B618CD6445897A52840530D3C3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -286,15 +286,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NIM"
-        "ProductCode" = "8:{A70C8669-3075-43B6-8A48-8733C07E91A7}"
-        "PackageCode" = "8:{0AC8A2E0-679A-488B-B90E-EBEACEFF37B3}"
+        "ProductCode" = "8:{41158B38-663E-4500-96AC-BC09E8DF27DD}"
+        "PackageCode" = "8:{815EDDC2-6FE7-4547-8F6B-400129C946C0}"
         "UpgradeCode" = "8:{A17A79ED-58BA-4F41-8D5A-F178C6ACB145}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:www.equals-forty-two.com"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.equals-forty-two.com"
@@ -304,7 +304,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Node.js Instance Manager"
         "ARPURLINFOABOUT" = "8:www.equals-forty-two.com"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_B234441FB3D54C90A61E6E964F9E21DC"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -831,7 +831,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_3EDAF4B825A447A7A35A704426AE184D"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B0E313B7F4304539BC298B0FC0E332C9"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"

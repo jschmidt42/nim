@@ -29,3 +29,6 @@ ipch/
 /ui_*
 /qrc_*.cpp
 /x64/
+Bin/x64/NIM.exe
+Bin/x64/NIMD.exe
+Bin/x64/NIMD.pdb

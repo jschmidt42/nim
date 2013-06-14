@@ -12,9 +12,13 @@
 
 #include <QtGui/QApplication>
 
-int main(int argc, char *argv[])
+int WinMain(
+  _In_  HINSTANCE hInstance,
+  _In_  HINSTANCE hPrevInstance,
+  _In_  LPSTR lpCmdLine,
+  _In_  int nCmdShow)
 {
-	QApplication a(argc, argv);
+	QApplication a(__argc, __argv);
 
 	QCoreApplication::setOrganizationName("Equals42");
 	QCoreApplication::setOrganizationDomain("equals-forty-two.com");

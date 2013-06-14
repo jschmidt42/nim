@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_763418B03EB346F8BBB0450A50906DBA"
+        "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8F1F65B75447EDDFE1E49F63E9C475EB"
         "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
         "MsmSig" = "8:_UNDEFINED"
@@ -29,12 +35,6 @@
         {
         "MsmKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B0E313B7F4304539BC298B0FC0E332C9"
-        "OwnerKey" = "8:_AD294C0EA7D64CDB9F0DCFC2889F8FFA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -286,15 +286,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NIM"
-        "ProductCode" = "8:{41158B38-663E-4500-96AC-BC09E8DF27DD}"
-        "PackageCode" = "8:{815EDDC2-6FE7-4547-8F6B-400129C946C0}"
+        "ProductCode" = "8:{5665A3DF-86F0-4D86-B323-8A09E7E8F1F2}"
+        "PackageCode" = "8:{B3FB4A0B-1461-46A9-8902-8FA70AC24A60}"
         "UpgradeCode" = "8:{A17A79ED-58BA-4F41-8D5A-F178C6ACB145}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.4"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:www.equals-forty-two.com"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.equals-forty-two.com"
@@ -831,7 +831,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B0E313B7F4304539BC298B0FC0E332C9"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_763418B03EB346F8BBB0450A50906DBA"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"

@@ -27,13 +27,20 @@ NodeLogWindow::NodeLogWindow(NodeInstance* nodeInstance, QWidget *parent)
 	mLog->setReadOnly( true );
 	mLog->insertHtml( ToHTML(mNodeInstnace->GetLog()) );
 
+    QHBoxLayout* buttonLayout = new QHBoxLayout(this);
+
 	QPushButton* closeButton = new QPushButton( tr("Close"), this );
+    QPushButton* clearButton = new QPushButton( tr("Clear"), this );
 
 	mainLayout->addWidget( mLog, 1 );
-	mainLayout->addWidget( closeButton, 0, Qt::AlignRight );
+    mainLayout->addLayout(buttonLayout);
+    buttonLayout->addWidget( clearButton, 0, Qt::AlignLeft );
+	buttonLayout->addWidget( closeButton, 0, Qt::AlignRight );
 
 	setLayout( mainLayout );
+
 	connect( closeButton, SIGNAL(clicked()), this, SLOT(deleteLater()) );
+    connect( clearButton, SIGNAL(clicked()), this, SLOT(Clear()) );
 
 	mQueryLogTimer.setInterval( 500 );
 	mQueryLogTimer.start();
@@ -124,6 +131,12 @@ QString NodeLogWindow::ToHTML(const QString& log) const
 		}
 	}
 
+    html.replace("error", "<span style='color:red'>error</span>");
+    html.replace("Error", "<span style='color:red'>Error</span>");
+
+    html.replace("warning", "<span style='color:yellow'>warning</span>");
+    html.replace("Warning", "<span style='color:yellow'>Warning</span>");
+
 	html += "</html>";
 
 	return html;
@@ -166,4 +179,9 @@ QString NodeLogWindow::GetColorTag(const QString& code) const
 	}
 
 	return "";
+}
+
+void NodeLogWindow::Clear()
+{
+    mLog->clear();
 }

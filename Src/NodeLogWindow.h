@@ -29,6 +29,8 @@ protected: // Events
 
 protected Q_SLOTS:
 
+    void Clear();
+
 Q_SIGNALS:
 
 private: // Details
